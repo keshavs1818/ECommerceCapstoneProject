@@ -16,6 +16,7 @@ private String name;
 private double price;
 private String category;
 
+//This is a change made for github
 public String getName() {
 	return name;
 }
