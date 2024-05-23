@@ -1,0 +1,47 @@
+<p>Please enter whatever items you want:</p>
+<br>
+<button type="submit" (click)="loadUsers()">Get Users</button><br>
+<br>
+<label><b>Add User</b></label><br>
+<label>Enter ID to add</label><br>
+<input type="text" [(ngModel)]="id"><br>
+<label>Enter Product Name to add</label><br>
+<input type="text" [(ngModel)]="name"><br>
+<label>Enter Product Price to add</label><br>
+<input type="text" [(ngModel)]="price"><br>
+<button type="submit" (click)="saveUser()">Add</button><br>
+
+<div>
+  <input type="file" class="file-input"
+       (change)="onFileSelected($event)" #fileUpload>
+
+<div class="file-upload">
+
+   
+
+    <button mat-mini-fab color="primary" class="upload-btn"
+      (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+    </button>
+  
+</div>
+</div>
+<ng-container *ngIf="user as data">
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+      </tr>
+      <tbody>
+        <tr *ngFor="let u of data">
+          <td>{{u.id}}</td>
+          <td>{{u.name}}</td>
+          <td>{{u.price}}</td>
+          <button type="submit" (click)="decCount()">-</button>
+          {{count}}
+          <button type="submit" (click)="incCount()">+</button>
+        </tr>
+      </tbody>
+    </table>
+</ng-container>

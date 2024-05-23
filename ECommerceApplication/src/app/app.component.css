@@ -1,0 +1,15 @@
+.route {
+    display: flex;
+}
+
+.route a {
+    margin-right: 570px;
+}
+
+#last {
+    margin-right: 0px;
+}
+
+h1 {
+    text-align: center;
+}
