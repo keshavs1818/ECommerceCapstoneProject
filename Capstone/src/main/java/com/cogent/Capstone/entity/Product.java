@@ -16,18 +16,7 @@ private String name;
 private double price;
 private String category;
 
-public int getId() {
-	return id;
-}
-public void setId(int id) {
-	this.id = id;
-}
-public String getCategory() {
-	return category;
-}
-public void setCategory(String category) {
-	this.category = category;
-}
+//This is a change made for github
 public String getName() {
 	return name;
 }
@@ -39,6 +28,18 @@ public double getPrice() {
 }
 public void setPrice(double price) {
 	this.price = price;
+}
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
+public String getCategory() {
+	return category;
+}
+public void setCategory(String category) {
+	this.category = category;
 }
 
 }
