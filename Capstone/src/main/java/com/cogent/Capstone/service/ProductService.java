@@ -6,13 +6,18 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cogent.Capstone.dto.ProductStockResponse;
 import com.cogent.Capstone.entity.Product;
+import com.cogent.Capstone.entity.Stock;
+import com.cogent.Capstone.proxy.StockProxy;
 import com.cogent.Capstone.repository.ProductRepository;
 
 @Service
 public class ProductService {
 	@Autowired
 	ProductRepository productRepository;
+	@Autowired
+	StockProxy stockProxy;
 	public Product saveProduct(Product product)
 	{
 		Product product1=productRepository.save(product);
@@ -55,6 +60,14 @@ public class ProductService {
 		 return product;
 	}
 	
-	
+	public ProductStockResponse getProductStock(int productId) {
+		Product product= productRepository.findById(productId).get();
+		
+		Stock stock=stockProxy.getStockById(product.getStockId());
+		ProductStockResponse responseDto= new ProductStockResponse();
+		responseDto.setStock(stock);
+		responseDto.setProduct(product);
+		return responseDto;
+	}
 
 }

@@ -15,6 +15,7 @@ private String name;
 private double price;
 private String category;
 private String imageUrl;
+private int stockId;
 
 public String getImageUrl() {
 	return imageUrl;
@@ -37,6 +38,12 @@ public void setPrice(double price) {
 }
 public int getId() {
 	return id;
+}
+public int getStockId() {
+	return stockId;
+}
+public void setStockId(int stockId) {
+	this.stockId = stockId;
 }
 public void setId(int id) {
 	this.id = id;

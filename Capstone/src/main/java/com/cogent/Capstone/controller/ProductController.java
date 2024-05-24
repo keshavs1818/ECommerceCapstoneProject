@@ -27,6 +27,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.univocity.parsers.common.record.Record;
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
+import com.cogent.Capstone.dto.ProductStockResponse;
 import com.cogent.Capstone.entity.Product;
 import com.cogent.Capstone.service.ProductService;
 
@@ -60,7 +61,7 @@ public class ProductController {
 		//Resource URI->HTTP GET: http://localhost:8080/users/{id}->integer value
 		//@GetMapping("/users/{id}")//id coming from path url is in string format
 		
-	    @GetMapping(value="/products/{name}" )//id coming from path url is in string format
+	    @GetMapping(value="/products/name/{name}" )//id coming from path url is in string format
 		public ResponseEntity<Product> searchUser(@PathVariable String name)
 		{
 	    	Product product=productService.searchProduct(name);
@@ -72,7 +73,7 @@ public class ProductController {
 	    	
 		}
 	    
-	    @GetMapping(value="/products/{id}" )//id coming from path url is in string format
+	    @GetMapping(value="/products/id/{id}" )//id coming from path url is in string format
 		public ResponseEntity<Product> getUser(@PathVariable int id)
 		{
 	    	Product product=productService.getProduct(id);
@@ -137,6 +138,11 @@ public class ProductController {
 	        String imageUrl = "/uploads/" + filename;
 	        System.out.println(imageUrl);
 	        return ResponseEntity.ok(imageUrl);
+	    }
+	    
+	    @GetMapping("/products/stocks/{id}")
+	    public ProductStockResponse getProductStock(@PathVariable("id") int id) {
+	    	return productService.getProductStock(id);
 	    }
 }
 
