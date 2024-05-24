@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import com.univocity.parsers.common.record.Record;
-import com.univocity.parsers.csv.CsvParser;
-import com.univocity.parsers.csv.CsvParserSettings;
+//import com.univocity.parsers.common.record.Record;
+//import com.univocity.parsers.csv.CsvParser;
+//import com.univocity.parsers.csv.CsvParserSettings;
 import com.cogent.Capstone.entity.Product;
 import com.cogent.Capstone.service.ProductService;
 
@@ -97,23 +97,23 @@ public class ProductController {
 			    	Product product1=productService.deleteProduct(id);
 			    	return product1;
 				}
-	@PostMapping(value="/product/csv")
-	public String uploadCSV(@RequestParam("file") MultipartFile file) throws Exception{
-		List<Product> productList= new ArrayList<>();
-		InputStream inputStream= file.getInputStream();
-		CsvParserSettings setting = new CsvParserSettings();
-		setting.setHeaderExtractionEnabled(true);
-		CsvParser parser= new CsvParser(setting);
-		List<Record> parseAllRecords = parser.parseAllRecords(inputStream);
-		parseAllRecords.forEach(record->{
-			Product product = new Product();
-			product.setName(record.getString("name"));
-			product.setPrice(record.getInt("price"));
-			productList.add(product);
-			productService.saveProduct(product);
-			
-		});
-		return "upload completed";
-	}
+//	@PostMapping(value="/product/csv")
+//	public String uploadCSV(@RequestParam("file") MultipartFile file) throws Exception{
+//		List<Product> productList= new ArrayList<>();
+//		InputStream inputStream= file.getInputStream();
+//		CsvParserSettings setting = new CsvParserSettings();
+//		setting.setHeaderExtractionEnabled(true);
+//		CsvParser parser= new CsvParser(setting);
+//		List<Record> parseAllRecords = parser.parseAllRecords(inputStream);
+//		parseAllRecords.forEach(record->{
+//			Product product = new Product();
+//			product.setName(record.getString("name"));
+//			product.setPrice(record.getInt("price"));
+//			productList.add(product);
+//			productService.saveProduct(product);
+//			
+//		});
+//		return "upload completed";
+//	}
 }
 

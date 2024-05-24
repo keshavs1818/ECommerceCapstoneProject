@@ -4,6 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cogent.Capstone.entity.User;
@@ -13,8 +18,16 @@ import com.cogent.Capstone.repository.UserRepository;
 public class UserService {
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	
+
+	
 	public User saveUser(User user)
-	{
+	{	
+		// encodes password using encryption
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		User user1=userRepository.save(user);
 		return user1;
 	}
@@ -35,18 +48,37 @@ public class UserService {
 		Optional<User> user1=userRepository.findById(id);
 		User user2=user1.get();
 		user2.setUsername(user.getUsername());
-		user2.setPassword(user.getPassword());
+		// encodes password using encryption
+		user2.setPassword(passwordEncoder.encode(user.getPassword()));
 		user2.setAddress(user.getAddress());
 		user2.setEmail(user.getEmail());
 		userRepository.flush();
 		return user2;
 		
 	}
+	
 	public User deleteUser(int id) {
 		// TODO Auto-generated method stub
 		User user= userRepository.findById(id).get();
 		userRepository.delete(user);
 		 return user;
 	}
+	
+	///// to load user details and role from database
+	public UserDetails loadUserByUsername (String username) throws UsernameNotFoundException {
+		Optional<User> userOptional = userRepository.findByUsername(username);
+		User user = userOptional.orElseThrow(()->new UsernameNotFoundException("User with " + username + " not found"));
+		
+		return new org.springframework.security.core.userdetails.User(
+				username, 
+				user.getPassword(),
+				AuthorityUtils.commaSeparatedStringToAuthorityList(user.getRole()));
+		
+	}
+	
+    public User getUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User with " + username + " not found"));
+    }
 
 }

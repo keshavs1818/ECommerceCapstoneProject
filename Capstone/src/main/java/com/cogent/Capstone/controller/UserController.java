@@ -9,7 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,20 +34,23 @@ import jakarta.validation.Valid;
 
 @RestController
 //@Controller
+@Validated
 public class UserController {
 	@Autowired
 	UserService userService;
+	
+	
 	//http://localhost:8080/user
    // @RequestMapping(value="/user", method = RequestMethod.POST)//1st way
 	//@RequestMapping("/user")
 	
 	//Post Mapping
-	@PostMapping(value = "/user")//2nd way
+	@PostMapping(value = "/createUser")//2nd way
 	//@PostMapping(value = "/user",consumes = MediaType.APPLICATION_XML_VALUE)
 	//@ResponseBody
 	//public String createUser(@ModelAttribute User user)//@Model Attribute tells the container
 	///Form data/Query Parameter can be preapared as Model
-	public ResponseEntity<User> createUser(@Valid @RequestBody User user)//JsoN,Xml or other formats are converted as Model.
+	public ResponseEntity<User> createUser(@RequestBody User user)//JsoN,Xml or other formats are converted as Model.
 	{
     	User user1=userService.saveUser(user);
     	//http://localhost:8080/user/1
@@ -83,16 +89,27 @@ public class UserController {
 				//@GetMapping("/users/{id}")//id coming from path url is in string format
 				@PutMapping(value="/users/{id}")//id coming from path url is in string format
 				//public User updateUser(@RequestBody User user)
-				public User updateUser(@PathVariable int id,@RequestBody User user)
-				{
-			    	User user1=userService.updateUser(id,user);
-			    	return user1;
-				}
-				@DeleteMapping(value="/users/{id}")//id coming from path url is in string format
-				//public User updateUser(@RequestBody User user)
-				public User deleteUser(@PathVariable int id)
-				{
-			    	User user1=userService.deleteUser(id);
-			    	return user1;
-				}
+		public User updateUser(@PathVariable int id,@RequestBody User user)
+		{
+	    	User user1=userService.updateUser(id,user);
+	    	return user1;
+		}
+				
+		@DeleteMapping(value="/users/{id}")//id coming from path url is in string format
+		//public User updateUser(@RequestBody User user)
+		public User deleteUser(@PathVariable int id)
+		{
+	    	User user1=userService.deleteUser(id);
+	    	return user1;
+		}
+		
+	    @GetMapping("/check-auth")
+	    public String checkAuthentication() {
+	        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	        if (authentication != null && authentication.isAuthenticated()) {
+	            return "Authenticated as: " + authentication.getName();
+	        } else {
+	            return "Not authenticated";
+	        }
+	    }
 }
