@@ -25,6 +25,21 @@
     </button>
   
 </div>
+
+<div>
+  <input type="file" class="file-input"
+       (change)="onImgSelected($event)" #fileUpload>
+
+<div class="file-upload">
+
+   
+
+    <button mat-mini-fab color="primary" class="upload-btn"
+      (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+    </button>
+  
+</div>
 </div>
 <ng-container *ngIf="user as data">
     <table>
@@ -32,12 +47,15 @@
         <th>Id</th>
         <th>Name</th>
         <th>Price</th>
+        <th>Image</th>
       </tr>
       <tbody>
         <tr *ngFor="let u of data">
           <td>{{u.id}}</td>
           <td>{{u.name}}</td>
           <td>{{u.price}}</td>
+          <td>{{u.imageUrl}}</td>
+          <img *ngIf="u.imageUrl" [src]="u.imageUrl" alt="{{ u.name }}">
           <button type="submit" (click)="decCount()">-</button>
           {{count}}
           <button type="submit" (click)="incCount()">+</button>

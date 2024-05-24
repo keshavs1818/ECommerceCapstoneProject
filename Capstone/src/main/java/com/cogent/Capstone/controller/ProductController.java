@@ -1,8 +1,12 @@
 package com.cogent.Capstone.controller;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,13 +111,32 @@ public class ProductController {
 		List<Record> parseAllRecords = parser.parseAllRecords(inputStream);
 		parseAllRecords.forEach(record->{
 			Product product = new Product();
+			product.setId(record.getInt("id"));
 			product.setName(record.getString("name"));
-			product.setPrice(record.getInt("price"));
+			product.setPrice(record.getDouble("price"));
+			product.setCategory(record.getString("category"));
+			product.setImageUrl(record.getString("imageUrl"));
 			productList.add(product);
 			productService.saveProduct(product);
 			
 		});
 		return "upload completed";
 	}
+	 private final String uploadDir = "src/main/resources/static/uploads/";
+
+	    @PostMapping("product/img")
+	    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) throws IOException {
+	        if (file.isEmpty()) {
+	            return ResponseEntity.badRequest().body("File is empty");
+	        }
+
+	        String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+	        Path filePath = Paths.get(uploadDir + filename);
+	        Files.copy(file.getInputStream(), filePath);
+
+	        String imageUrl = "/uploads/" + filename;
+	        System.out.println(imageUrl);
+	        return ResponseEntity.ok(imageUrl);
+	    }
 }
 

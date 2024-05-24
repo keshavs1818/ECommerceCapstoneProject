@@ -13,6 +13,7 @@ export class HomeService {
   private urlPost = 'http://localhost:8080/product';
   private urlGet = 'http://localhost:8080/products';
   private bulkUrlPost= 'http://localhost:8080/product/csv';
+  private imgUrlPost= 'http://localhost:8080/product/img';
   createUser(user:any)
   {
     return this.http.post(this.urlPost, user);
@@ -31,5 +32,8 @@ export class HomeService {
   }
   bulkUpload(file:FormData){
     return this.http.post(this.bulkUrlPost,file)
+  }
+  imgUpload(file:FormData){
+    return this.http.post(this.imgUrlPost,file)
   }
 }

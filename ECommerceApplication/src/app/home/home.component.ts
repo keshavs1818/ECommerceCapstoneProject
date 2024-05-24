@@ -14,6 +14,8 @@ export class HomeComponent {
   id:any;
   name:any;
   price:any;
+  category:any;
+  imageUrl:any;
   count:number=0;
   user:any;
   data = "productdetails";
@@ -21,7 +23,7 @@ export class HomeComponent {
   fileName="";
   saveUser () 
   {
-    this.payLoadUser = {'id': this.id, 'name': this.name, 'price': this.price}
+    this.payLoadUser = {'id': this.id, 'name': this.name, 'price': this.price, 'category':this.category, 'imageUrl':this.imageUrl }
     this.homeService.createUser(this.payLoadUser).subscribe(data=>console.log(data));
     
     console.log("User updated");
@@ -54,6 +56,17 @@ export class HomeComponent {
       formData.append("file",file);
       this.homeService.bulkUpload(formData).subscribe();
       console.log("users sent")
+    }
+  }
+  onImgSelected(event){
+    const file:File= event.target.files[0];
+    if(file){
+      this.fileName=file.name;
+      const formData= new FormData();
+      formData.append("file",file);
+      this.homeService.imgUpload(formData).subscribe();
+      console.log("image sent")
+      
     }
   }
 }
