@@ -11,19 +11,31 @@ import { NgForm } from '@angular/forms';
 })
 export class HomeComponent {
   constructor(private homeService:HomeService ,private http:HttpClient){}
+  // Product Details Category
   id:any;
   name:any;
   price:any;
-  count:number=0;
+  category:any;
+
+  // 
   user:any;
+  new_category:string;
   data = "productdetails";
   payLoadUser:any;
+  cat_array = [];
+  new_array = [];
   fileName="";
+  new_obj:object;
+  filter_boolean:boolean;
+  temp_array = [...this.cat_array];
+  new_count = 0;
+  count = 0;
+
+  counts: number[] = [];
   saveUser () 
   {
-    this.payLoadUser = {'id': this.id, 'name': this.name, 'price': this.price}
+    this.payLoadUser = {'id': this.id, 'name': this.name, 'price': this.price, 'category': this.category}
     this.homeService.createUser(this.payLoadUser).subscribe(data=>console.log(data));
-    
     console.log("User updated");
   }
   removeUser () 
@@ -33,18 +45,34 @@ export class HomeComponent {
   }
   loadUsers()
   {
-    this.homeService.getUsers().subscribe(data=>this.user=data);
-    console.log("Users loaded");
+    this.homeService.getUsers().subscribe({
+      next: (data) => {
+        if (Array.isArray(data)) {
+          this.user = data;
+          this.temp_array = data;
+          this.counts = Array(data.length).fill(0); // Get the length of the data array
+          console.log("Users loaded", this.user);
+        }
+      },
+    })
+    /*data=>{this.user=data;
+    this.counts = Array(data.length).fill(0); 
+    console.log("Users loaded")});*/
   }
-  decCount()
+  decCount(index:number)
   {
-    if(this.count>0){
-    this.count -= 1;
+    if(this.counts[index]>0){
+    this.counts[index]--;
     }
   }
-  incCount()
+  incCount(index:number)
   {
-    this.count += 1;
+    this.counts[index]++;
+  }
+  filterBy(category:string) {
+    console.log("FILTER: " + this.temp_array);
+    this.cat_array = this.temp_array.filter(item => item.category === category);
+    this.filter_boolean = true;
   }
   onFileSelected(event){
     const file:File= event.target.files[0];
