@@ -1,0 +1,29 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>Product Stocks</h1>
+        <input type="text" [(ngModel)]="id"><br>
+        <label>Enter Product Name to view stocks</label><br>
+        <button type="submit" (click)="loadStocks()">Add</button><br>
+    <table>
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Stock ID</th>
+                <th>Stock Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of product">
+                <td>{{ item.product.id }}</td>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.stock.stockId }}</td>
+                <td>{{ item.stock.stockAvailable }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </body>
+</html>

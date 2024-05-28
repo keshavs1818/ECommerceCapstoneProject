@@ -150,5 +150,9 @@ public class ProductController {
 	    public ProductSaleResponse getProductSale(@PathVariable("id") int id) {
 	    	return productService.getProductSale(id);
 	    }
+	    @GetMapping("/products/stocks")
+	    public List<ProductStockResponse> getAllProductStocks() {
+	        return productService.getAllProductStocks();
+	    }
 }
 
