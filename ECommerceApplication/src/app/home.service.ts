@@ -14,9 +14,12 @@ export class HomeService {
   private urlGet = 'http://localhost:8080/products';
   private bulkUrlPost= 'http://localhost:8080/product/csv';
   private imgUrlPost= 'http://localhost:8080/product/img';
+  // jinkang added
+  private urlCreateUser = 'http://localhost:8080/createUser';
+
   createUser(user:any)
   {
-    return this.http.post(this.urlPost, user);
+    return this.http.post(this.urlCreateUser, user);
   }
   updateUser(user:any,id:number)
   {
