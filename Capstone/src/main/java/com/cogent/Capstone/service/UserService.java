@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cogent.Capstone.entity.User;
@@ -13,9 +14,16 @@ import com.cogent.Capstone.repository.UserRepository;
 public class UserService {
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	
 	public User saveUser(User user)
 	{
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setRole("ROLE_USER");
 		User user1=userRepository.save(user);
+		
 		return user1;
 	}
 	public List<User> getUsers() {
@@ -23,9 +31,16 @@ public class UserService {
 		List<User> users=userRepository.findAll();
 		return users;
 	}
+	
 	public User getUser(int id) {
 		// TODO Auto-generated method stub
 		Optional<User> user=userRepository.findById(id);
+		return user.orElse(null);
+	}
+	
+	public User getUser(String userName) {
+		// TODO Auto-generated method stub
+		Optional<User> user=userRepository.findByUsername(userName);
 		return user.orElse(null);
 	}
 	
@@ -35,7 +50,7 @@ public class UserService {
 		Optional<User> user1=userRepository.findById(id);
 		User user2=user1.get();
 		user2.setUsername(user.getUsername());
-		user2.setPassword(user.getPassword());
+		user2.setPassword(passwordEncoder.encode(user.getPassword()));
 		user2.setAddress(user.getAddress());
 		user2.setEmail(user.getEmail());
 		userRepository.flush();

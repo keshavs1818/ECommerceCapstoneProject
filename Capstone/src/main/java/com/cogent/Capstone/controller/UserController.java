@@ -39,7 +39,7 @@ public class UserController {
 	//@RequestMapping("/user")
 	
 	//Post Mapping
-	@PostMapping(value = "/user")//2nd way
+	@PostMapping(value = "/createUser")//2nd way
 	//@PostMapping(value = "/user",consumes = MediaType.APPLICATION_XML_VALUE)
 	//@ResponseBody
 	//public String createUser(@ModelAttribute User user)//@Model Attribute tells the container
@@ -66,33 +66,34 @@ public class UserController {
 		//Resource URI->HTTP GET: http://localhost:8080/users/{id}->integer value
 		//@GetMapping("/users/{id}")//id coming from path url is in string format
 		
-	    @GetMapping(value="/users/{id}" )//id coming from path url is in string format
-		public ResponseEntity<User> getUser(@PathVariable int id)
-		{
-	    	User user=userService.getUser(id);
-	    	System.out.println(user);
-	    	if(user==null)
-	    		//throw new UserNotFoundException("ID:"+id+" Not Found");
-	    		throw new RuntimeException("ID:"+id+" Not Found");
-	    	return ResponseEntity.status(HttpStatus.OK).body(user);
-	    	
-		}
+    @GetMapping(value="/users/{id}" )//id coming from path url is in string format
+	public ResponseEntity<User> getUser(@PathVariable int id)
+	{
+    	User user=userService.getUser(id);
+    	System.out.println(user);
+    	if(user==null)
+    		//throw new UserNotFoundException("ID:"+id+" Not Found");
+    		throw new RuntimeException("ID:"+id+" Not Found");
+    	return ResponseEntity.status(HttpStatus.OK).body(user);
+    	
+	}
 		
 		//API for the PUT method to update/replace a specific user.
 				//Resource URI->HTTP PUT: http://localhost:8080/user->integer value
 				//@GetMapping("/users/{id}")//id coming from path url is in string format
-				@PutMapping(value="/users/{id}")//id coming from path url is in string format
-				//public User updateUser(@RequestBody User user)
-				public User updateUser(@PathVariable int id,@RequestBody User user)
-				{
-			    	User user1=userService.updateUser(id,user);
-			    	return user1;
-				}
-				@DeleteMapping(value="/users/{id}")//id coming from path url is in string format
-				//public User updateUser(@RequestBody User user)
-				public User deleteUser(@PathVariable int id)
-				{
-			    	User user1=userService.deleteUser(id);
-			    	return user1;
-				}
+	@PutMapping(value="/users/{id}")//id coming from path url is in string format
+	//public User updateUser(@RequestBody User user)
+	public User updateUser(@PathVariable int id,@RequestBody User user)
+	{
+    	User user1=userService.updateUser(id,user);
+    	return user1;
+	}
+	
+	@DeleteMapping(value="/users/{id}")//id coming from path url is in string format
+	//public User updateUser(@RequestBody User user)
+	public User deleteUser(@PathVariable int id)
+	{
+    	User user1=userService.deleteUser(id);
+    	return user1;
+	}
 }
