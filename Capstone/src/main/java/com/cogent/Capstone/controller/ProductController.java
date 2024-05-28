@@ -27,6 +27,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.univocity.parsers.common.record.Record;
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
+import com.cogent.Capstone.dto.ProductSaleResponse;
 import com.cogent.Capstone.dto.ProductStockResponse;
 import com.cogent.Capstone.entity.Product;
 import com.cogent.Capstone.service.ProductService;
@@ -143,6 +144,11 @@ public class ProductController {
 	    @GetMapping("/products/stocks/{id}")
 	    public ProductStockResponse getProductStock(@PathVariable("id") int id) {
 	    	return productService.getProductStock(id);
+	    }
+	    
+	    @GetMapping("/products/sales/{id}")
+	    public ProductSaleResponse getProductSale(@PathVariable("id") int id) {
+	    	return productService.getProductSale(id);
 	    }
 }
 

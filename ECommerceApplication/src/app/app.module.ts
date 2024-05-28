@@ -7,13 +7,14 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon'
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
     AppComponent,HomeComponent, RegisterComponent
   ],
   imports: [
-    BrowserModule,HttpClientModule,AppRoutingModule, FormsModule, MatIconModule
+    BrowserModule,HttpClientModule,AppRoutingModule, FormsModule, MatIconModule,MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
