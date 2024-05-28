@@ -10,12 +10,19 @@ import jakarta.persistence.Table;
 @Table(name="productdetails")
 public class Product {
 @Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
 private int id;
 private String name;
 private double price;
 private String category;
+private String imageUrl;
+private int stockId;
 
+public String getImageUrl() {
+	return imageUrl;
+}
+public void setImageUrl(String imageUrl) {
+	this.imageUrl = imageUrl;
+}
 //This is a change made for github
 public String getName() {
 	return name;
@@ -31,6 +38,12 @@ public void setPrice(double price) {
 }
 public int getId() {
 	return id;
+}
+public int getStockId() {
+	return stockId;
+}
+public void setStockId(int stockId) {
+	this.stockId = stockId;
 }
 public void setId(int id) {
 	this.id = id;
