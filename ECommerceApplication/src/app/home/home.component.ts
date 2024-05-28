@@ -11,13 +11,19 @@ import { NgForm } from '@angular/forms';
 })
 export class HomeComponent {
   constructor(private homeService:HomeService ,private http:HttpClient){}
-  // Product Details Category
+  // Columns For Product Details
   id:any;
   name:any;
   price:any;
   category:any;
 
-  // 
+  // Name to Search From
+  searchText:any;
+
+  // Column To Sort
+  column_to_sort:any;
+
+  
   user:any;
   new_category:string;
   data = "productdetails";
@@ -25,23 +31,82 @@ export class HomeComponent {
   cat_array = [];
   new_array = [];
   fileName="";
+  cat_set = new Set();
   new_obj:object;
   filter_boolean:boolean;
+  sort_boolean:boolean;
   temp_array = [...this.cat_array];
   new_count = 0;
   count = 0;
+  asc_desc:any;
+  message:any;
 
+  cart_array = [];
+  wish_array = [];
+  showCartBool:boolean;
+  showWishBool:boolean;
+  sum:number;
+  
   counts: number[] = [];
+
+  maphash = {
+    id: "id",
+    name: "name",
+    price: "price",
+    category: "category"
+  };
+  updateSum(num:number) {
+    this.sum += num;
+  }
+  updateAdd(id:number, name:string, price:any, category:any, count:any) {
+    this.new_obj = {a: id, b: name, c: price, d: category, e: count};
+    this.cart_array.push(this.new_obj);
+    console.log(this.cart_array);
+  }
+  updateWish(id:number, name:string, price:any, category:any) {
+    this.new_obj = {id: id, name: name, price: price, category: category};
+    this.wish_array.push(this.new_obj);
+  }
+  showCart() {
+    this.showCartBool = true;
+  }
+  showWish() {
+    this.showWishBool = true;
+  }
+  sortBy(column_name:any, asc_desc:any) {
+    const sortOrder = asc_desc === "Ascending" ? 1 : -1;
+
+    this.temp_array.sort((a, b) => {
+      if (a[column_name] < b[column_name]) {
+        return -1 * sortOrder;
+      } else if (a[column_name] > b[column_name]) {
+        return 1 * sortOrder;
+      } else {
+        return 0;
+      }
+    });
+
+    console.log(this.temp_array);
+  }
+  add(category:string) {
+    this.cat_set.add(category);
+  }
   saveUser () 
   {
-    this.payLoadUser = {'id': this.id, 'name': this.name, 'price': this.price, 'category': this.category}
+    this.payLoadUser = {'id': this.id, 'name': this.name, 'price': this.price, 'category': this.category};
+    this.message = "The product " + this.name + " with id " + this.id + " has been added.";
     this.homeService.createUser(this.payLoadUser).subscribe(data=>console.log(data));
     console.log("User updated");
   }
-  removeUser () 
+  removeUser() 
   {
     this.homeService.deleteUser(this.id).subscribe(data=>console.log(data));
     console.log("User deleted");
+  }
+  searchUser () 
+  {
+    this.homeService.searchUser(this.searchText).subscribe(data=>console.log(data));
+    console.log("User found");
   }
   loadUsers()
   {
@@ -55,9 +120,6 @@ export class HomeComponent {
         }
       },
     })
-    /*data=>{this.user=data;
-    this.counts = Array(data.length).fill(0); 
-    console.log("Users loaded")});*/
   }
   decCount(index:number)
   {
@@ -70,7 +132,6 @@ export class HomeComponent {
     this.counts[index]++;
   }
   filterBy(category:string) {
-    console.log("FILTER: " + this.temp_array);
     this.cat_array = this.temp_array.filter(item => item.category === category);
     this.filter_boolean = true;
   }

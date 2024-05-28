@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = "Welcome to the eCommerce Application page. Click to get started.";
+  title = "Welcome to the eCommerce Application page. Login to get started shopping.";
   username:any;
   password:any;
   reg_username:any;
