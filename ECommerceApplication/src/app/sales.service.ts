@@ -11,6 +11,6 @@ export class SalesService {
   private urlGet="http://localhost:8080/products/sales"
   private authHeader = this.authService.getAuthHeaders();
   getAllSales(){
-    return this.http.get(this.urlGet,{headers: this.authHeader});
+    return this.http.get(this.urlGet);
   }
 }
