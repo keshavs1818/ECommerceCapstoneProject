@@ -1,0 +1,32 @@
+.inline-p{
+    display:inline;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 100px); /* Creates two columns */
+    gap: 10px;; /* Optional: Adds space between the grid items */
+  }
+  
+  .grid-container div {
+    display: contents; /* Allows the child elements to participate in the grid layout */
+  }
+  .grid-container p {
+    margin: 0; /* Removes default margin for <p> elements */
+    padding: 5px; /* Adds padding to the <p> elements */
+    border: 1px solid #ccc; /* Adds a border for better visibility */
+  }
+
+
+  mat-card{
+    margin:20px;
+   
+    width:25%;
+    height: auto;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+  .flexbox{
+    display: flex;
+    flex: wrap;
+  }

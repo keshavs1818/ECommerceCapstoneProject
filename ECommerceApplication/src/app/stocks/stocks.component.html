@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>Product Stocks</h1>
-      
+        
     <table >
         <thead>
             <tr>
@@ -12,6 +12,7 @@
                 <th>Product Name</th>
                 <th>Stock ID</th>
                 <th>Stock Quantity</th>
+                <th>Order</th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +21,7 @@
                 <td>{{ item.product.name }}</td>
                 <td>{{ item.stock.stockId }}</td>
                 <td>{{ item.stock.stockAvailable }}</td>
-                <button>Order stock</button>
+                <button>🔼</button>
             </tr>
         </tbody>
     </table>
