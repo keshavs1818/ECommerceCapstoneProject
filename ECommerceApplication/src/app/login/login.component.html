@@ -7,7 +7,7 @@
 <input type="text" [(ngModel)]="username"><br>
 <label>Password</label><br>
 <input type="text" [(ngModel)]="password"><br>
-<button (click)="loginAction()" [disabled]="!isUserValid()"> LoginTest</button>
+<button (click)="loginAction()"> LoginTest</button>
 <p>Not a user? <a href='#' routerLink="register">Sign up here!</a></p> 
 <!-- <a href="#" routerLink="home">Login</a><br> -->
 <p *ngIf="!validLogin">{{error_msg}}</p>

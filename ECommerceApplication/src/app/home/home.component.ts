@@ -21,6 +21,7 @@ export class HomeComponent {
   data = "productdetails";
   payLoadUser:any;
   fileName="";
+
   saveUser () 
   {
     this.payLoadUser = {'id': this.id, 'name': this.name, 'price': this.price, 'category':this.category, 'imageUrl':this.imageUrl }
