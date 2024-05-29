@@ -11,11 +11,12 @@ import {MatMenuModule} from '@angular/material/menu';
 import { StocksComponent } from './stocks/stocks.component';
 import { StocksService } from './stocks.service';
 import { SalesComponent } from './sales/sales.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent
+    AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent, LoginComponent
   ],
   imports: [
     BrowserModule,HttpClientModule,AppRoutingModule, FormsModule, MatIconModule,MatMenuModule

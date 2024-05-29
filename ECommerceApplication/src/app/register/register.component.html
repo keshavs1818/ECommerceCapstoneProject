@@ -1,1 +1,9 @@
-<p>Register works</p>
+<form #registrationForm="ngForm" (ngSubmit)="onSubmit()">
+    <p>Register:</p>
+    <label>Username</label><br>
+    <input type="text" [(ngModel)]="reg_username"><br>
+    <label>Password</label><br>
+    <input type="password" [(ngModel)]="reg_password"><br>
+    <button (click)="onSubmit">Submit</button>
+</form>
+<p *ngIf="is_error"> {{error_msg}}</p>
