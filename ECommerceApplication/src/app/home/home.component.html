@@ -1,4 +1,6 @@
 <p>Please enter whatever items you want:</p>
+
+<!-- GETTING THE PRODUCTS -->
 <button type="submit" (click)="loadUsers()">Get Products</button><br>
 <br>
 <label><b>Add Product</b></label><br>
@@ -12,6 +14,9 @@
 <input type="text" [(ngModel)]="category"><br>
 <button type="submit" (click)="saveUser()">Add</button><br>
 
+
+
+<!-- BULK UPLOADING IMAGES -->
 <div>
   <input type="file" class="file-input"
        (change)="onFileSelected($event)" #fileUpload>
@@ -22,6 +27,10 @@
         <mat-icon>attach_file</mat-icon>
     </button>
 </div>
+
+
+
+<!-- SORTING THE PRODUCTS -->
 <label for="sort">Sort By</label>
 <select id="sort" [(ngModel)]="column_to_sort">
   <option *ngFor="let entry of maphash | keyvalue">{{ entry.key }}</option>
@@ -31,7 +40,7 @@
   <option>Ascending</option>
   <option>Descending</option>
 </select>
-<button (click)="sortBy(column_to_sort, asc_desc)">Sort</button>
+<button [disabled]="!column_to_sort || !asc_desc" (click)="sortBy(column_to_sort, asc_desc)">Sort</button>
 <ng-container *ngIf="user as data">
     <table>
       <tr>
@@ -50,16 +59,21 @@
           <button type="submit" (click)="decCount(i)">-</button>
           {{counts[i]}}
           <button type="submit" (click)="incCount(i)">+</button><br>
-          <button (click)="updateAdd(u.id, u.name, u.price, u.category, counts[i])"><b>Add To Cart</b></button><br>
-          <button (click)="updateWish(u.id, u.name, u.price, u.category)"><b>Add To Wishlist</b></button>
+          {{checkCart(i)}}
+          {{checkWish(i)}}
+          <button [disabled]="disabled_cart[i]" (click)="updateAdd(u.id, u.name, u.price, u.category, counts[i])"><b>Add To Cart</b></button><br>
+          <button [disabled]="disabled_wish[i]" (click)="updateWish(u.id, u.name, u.price, u.category)"><b>Add To Wishlist</b></button>
         </tr>
       </tbody>
     </table>
 </ng-container>
 <br>
-<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search by id, name, price, or category">
+
+
+<!-- SEARCH FUNCTIONALITY -->
+<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search by name">
 <button (click)="searchUser()">Search</button><br>
-<ng-container *ngIf="user as data">
+<ng-container *ngIf="searchBool">
   <table>
     <tr>
       <th>Id</th>
@@ -68,22 +82,19 @@
       <th>Category</th>
     </tr>
     <tbody>
-      <tr *ngFor="let u of data; let i = index">
+      <tr *ngFor="let u of searchArray">
         <td>{{u.id}}</td>
         <td>{{u.name}}</td>
         <td>{{u.price}}</td>
         <td>{{u.category}}</td>
-        {{add(u.category)}}
-        <button type="submit" (click)="decCount(i)">-</button>
-        {{counts[i]}}
-        <button type="submit" (click)="incCount(i)">+</button><br>
-        <button (click)="updateAdd(u.id, u.name, u.price, u.category, counts[i])"><b>Add To Cart</b></button><br>
-        <button (click)="updateWish(u.id, u.name, u.price, u.category)"><b>Add To Wishlist</b></button>
       </tr>
     </tbody>
   </table>
 </ng-container>
 <br>
+
+
+<!-- FILTERING BY CATEGORY -->
 <label for="category">Choose Category To Filter</label>
 <select id="category" [(ngModel)]="new_category">
   <option *ngFor="let category of cat_set">{{ category }}</option>
@@ -106,45 +117,9 @@
   </table>
 </ng-container>
 <br>
-<button (click)="showCart()">Show Cart</button>
-<button (click)="showWish()">Show Wishlist</button>
-<ng-container *ngIf="showCartBool">
-  <table>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Category</th>
-      <th>Count</th>
-      <th>Payment</th>
-    </tr>
-    <tbody>
-      <tr *ngFor="let u of cart_array">
-        <td>{{u.a}}</td>
-        <td>{{u.b}}</td>
-        <td>{{u.c}}</td>
-        <td>{{u.d}}</td>
-        <td>{{u.e}}</td>
-        <td>{{u.c * u.e}}</td>
-        {{updateSum(u.c * u.e)}}
-      </tr>
-    </tbody>
-  </table>
-  <p>Total</p>
-</ng-container>
-<ng-container *ngIf="showWishBool">
-  <table>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Price</th>
-    </tr>
-    <tbody>
-      <tr *ngFor="let u of wish_array">
-        <td>{{u.id}}</td>
-        <td>{{u.name}}</td>
-        <td>{{u.price}}</td>
-      </tr>
-    </tbody>
-  </table>
-</ng-container>
+
+
+<!-- ROUTING TO CART AND WISHLIST TO DISPLAY THEM -->
+<a href="#" routerlink="/cart">Show Cart</a><br>
+<a href="#" routerlink="/wishlist">Show Wishlist</a>
+

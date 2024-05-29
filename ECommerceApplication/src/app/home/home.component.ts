@@ -43,9 +43,12 @@ export class HomeComponent {
 
   cart_array = [];
   wish_array = [];
-  showCartBool:boolean;
-  showWishBool:boolean;
+  disabled_cart = [];
+  disabled_wish = [];
   sum:number;
+  searchArray:any;
+  searchBool:boolean;
+  sortBool = true;
   
   counts: number[] = [];
 
@@ -55,6 +58,13 @@ export class HomeComponent {
     price: "price",
     category: "category"
   };
+
+  checkCart(index:number) {
+    this.disabled_cart[index] = !(this.counts[index] > 0);
+  }
+  checkWish(index:number) {
+    this.disabled_wish[index] = !(this.counts[index] > 0);
+  }
   updateSum(num:number) {
     this.sum += num;
   }
@@ -67,15 +77,8 @@ export class HomeComponent {
     this.new_obj = {id: id, name: name, price: price, category: category};
     this.wish_array.push(this.new_obj);
   }
-  showCart() {
-    this.showCartBool = true;
-  }
-  showWish() {
-    this.showWishBool = true;
-  }
   sortBy(column_name:any, asc_desc:any) {
     const sortOrder = asc_desc === "Ascending" ? 1 : -1;
-
     this.temp_array.sort((a, b) => {
       if (a[column_name] < b[column_name]) {
         return -1 * sortOrder;
@@ -105,7 +108,8 @@ export class HomeComponent {
   }
   searchUser () 
   {
-    this.homeService.searchUser(this.searchText).subscribe(data=>console.log(data));
+    this.searchBool = true;
+    this.homeService.searchUser(this.searchText).subscribe(data=>{console.log(data); if(Array.isArray(data)) {this.searchArray = data}});
     console.log("User found");
   }
   loadUsers()
@@ -115,7 +119,9 @@ export class HomeComponent {
         if (Array.isArray(data)) {
           this.user = data;
           this.temp_array = data;
-          this.counts = Array(data.length).fill(0); // Get the length of the data array
+          this.counts = Array(data.length).fill(0);
+          this.disabled_cart = Array(data.length).fill(true);
+          this.disabled_wish = Array(data.length).fill(true); // Get the length of the data array
           console.log("Users loaded", this.user);
         }
       },
