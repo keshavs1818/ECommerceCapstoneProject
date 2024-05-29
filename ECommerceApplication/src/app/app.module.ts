@@ -7,15 +7,20 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon'
+import {MatMenuModule} from '@angular/material/menu';
+import { StocksComponent } from './stocks/stocks.component';
+import { StocksService } from './stocks.service';
+import { SalesComponent } from './sales/sales.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent,HomeComponent, RegisterComponent
+    AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent
   ],
   imports: [
-    BrowserModule,HttpClientModule,AppRoutingModule, FormsModule, MatIconModule
+    BrowserModule,HttpClientModule,AppRoutingModule, FormsModule, MatIconModule,MatMenuModule
   ],
-  providers: [],
+  providers: [StocksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
