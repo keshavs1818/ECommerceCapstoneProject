@@ -65,7 +65,7 @@ export class HomeComponent {
       const formData= new FormData();
       formData.append("file",file);
       this.homeService.imgUpload(formData).subscribe();
-      console.log("image sent")
+      console.log("Image sent " + this.fileName)
       
     }
   }

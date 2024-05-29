@@ -11,16 +11,16 @@ import {MatMenuModule} from '@angular/material/menu';
 import { StocksComponent } from './stocks/stocks.component';
 import { StocksService } from './stocks.service';
 import { SalesComponent } from './sales/sales.component';
-
+import {MatCardModule} from '@angular/material/card'
 
 @NgModule({
   declarations: [
     AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent
   ],
   imports: [
-    BrowserModule,HttpClientModule,AppRoutingModule, FormsModule, MatIconModule,MatMenuModule
+    BrowserModule,HttpClientModule,AppRoutingModule, FormsModule, MatIconModule,MatMenuModule,MatCardModule
   ],
   providers: [StocksService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,StocksComponent]
 })
 export class AppModule { }
