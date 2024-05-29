@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
   providers:[HttpClient]
 })
 export class AppComponent {
-  constructor(private http:HttpClient){}
+  constructor(private http:HttpClient, private router:Router){}
   title = "Welcome to the eCommerce Application page. Click to get started.";
   username:any;
   password:any;
@@ -22,6 +23,7 @@ export class AppComponent {
   error_msg:any;
   welcome_msg:any;
   validLogin:boolean = true;
+
   function() {
     this.error_msg = "Username and password isn't established. Please register if you're a newcomer. Thank you.";
   }
@@ -42,12 +44,17 @@ export class AppComponent {
   loginAction(): any {
     this.payLoadUser = {"username": this.username, "password":this.password
     }
-    this.http.post('http://localhost:8080/authenticate', this.payLoadUser).subscribe (
+    this.http.post<{token: string}>('http://localhost:8080/authenticate', this.payLoadUser).subscribe (
       (response)=> {
-        console.log("Token: ", response);
-
+        console.log(response);
+        this.validLogin = true;
+        // stores token in client memory
+        localStorage.setItem('token',response.token);
+        // routes to home page
+        this.router.navigate(['/home']);
       },
       (error)=>{
+        // logging error message
         console.log("Error: ", error);
         this.error_msg = "Login failed";
         this.validLogin = false;
