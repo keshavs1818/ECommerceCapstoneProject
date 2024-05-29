@@ -154,5 +154,9 @@ public class ProductController {
 	    public List<ProductStockResponse> getAllProductStocks() {
 	        return productService.getAllProductStocks();
 	    }
+	    @GetMapping("/products/sales")
+	    public List<ProductSaleResponse> getAllProductSales() {
+	        return productService.getAllProductSales();
+	    }
 }
 

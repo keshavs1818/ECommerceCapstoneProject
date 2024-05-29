@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StocksService } from '../stocks.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -7,9 +7,11 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './stocks.component.html',
   styleUrl: './stocks.component.css'
 })
-export class StocksComponent {
+export class StocksComponent implements OnInit{
   constructor(private stockService:StocksService ,private http:HttpClient){}
-
+ngOnInit(): void {
+    this.loadAll();
+}
   product:any
   id:number
   loadStocks()
@@ -23,5 +25,8 @@ export class StocksComponent {
       console.log(data);}
     );
     console.log("Stocks loaded");
+  }
+  loadAll(){
+    this.stockService.getAllStock().subscribe(data=>this.product=data)
   }
 }

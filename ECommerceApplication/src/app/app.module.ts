@@ -10,11 +10,12 @@ import {MatIconModule} from '@angular/material/icon'
 import {MatMenuModule} from '@angular/material/menu';
 import { StocksComponent } from './stocks/stocks.component';
 import { StocksService } from './stocks.service';
+import { SalesComponent } from './sales/sales.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent,HomeComponent, RegisterComponent,StocksComponent
+    AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent
   ],
   imports: [
     BrowserModule,HttpClientModule,AppRoutingModule, FormsModule, MatIconModule,MatMenuModule
