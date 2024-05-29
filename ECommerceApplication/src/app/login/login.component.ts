@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor(private http:HttpClient, private router:Router){}
+  constructor(private http:HttpClient, private router:Router, private authService: AuthService){}
   title = "Welcome to the eCommerce Application page. Click to get started.";
   username:any;
   password:any;
@@ -41,12 +42,13 @@ export class LoginComponent {
   loginAction(): any {
     this.payLoadUser = {"username": this.username, "password":this.password
     }
-    this.http.post<{token: string}>('http://localhost:8080/authenticate', this.payLoadUser).subscribe (
+    this.http.post<{token: string, role:string}>('http://localhost:8080/authenticate', this.payLoadUser).subscribe (
       (response)=> {
         console.log(response);
         this.validLogin = true;
         // stores token in client memory
-        localStorage.setItem('token',response.token);
+        this.authService.setAuthHeaders(response.token);
+        this.authService.setAuthRole(response.role);
         // routes to home page
         this.router.navigate(['/home']);
       },

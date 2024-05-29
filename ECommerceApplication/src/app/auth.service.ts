@@ -8,8 +8,18 @@ export class AuthService {
 
   constructor() {}
   private token = localStorage.getItem('token');
+  private role;
   getAuthHeaders() {
-    const token = localStorage.getItem('token');
     return new HttpHeaders({'Authorization': 'Bearer ' + this.token});
+  }
+  setAuthHeaders(token: string) {
+    this.token = token;
+  }
+
+  getRole() {
+    return this.role;
+  }
+  setAuthRole(role: string) {
+    this.role = role;
   }
 }

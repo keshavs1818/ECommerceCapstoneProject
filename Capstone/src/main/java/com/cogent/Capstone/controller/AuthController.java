@@ -49,7 +49,7 @@ public class AuthController {
 			throw new Exception("Wrong login credentials");
 		}
 		
-		return new JwtResponse(createToken(actualUser));
+		return new JwtResponse(createToken(actualUser), actualUser.getRole());
 	}
 	
 	private String createToken(User user) {
@@ -65,6 +65,6 @@ public class AuthController {
 	}
 }
 
-record JwtResponse(String token) {
+record JwtResponse(String token, String role) {
 	
 }
