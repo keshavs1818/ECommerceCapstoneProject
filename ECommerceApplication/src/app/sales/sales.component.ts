@@ -11,12 +11,13 @@ import { SalesService } from '../sales.service';
 })
 export class SalesComponent implements OnInit {
 constructor(private salesService:SalesService, private http:HttpClient, ){}
-  ngOnInit(): void {
-    this.loadAll();
-  }
-  product:any
-  id:number
-  loadAll(){
-    this.salesService.getAllSales().subscribe(data=>this.product=data)
-  }
+ngOnInit(): void {
+  this.loadAll();
+}
+product:any
+id:number
+loadAll(){
+  this.salesService.getAllSales().subscribe(data=>this.product=data)
+}
+
 }

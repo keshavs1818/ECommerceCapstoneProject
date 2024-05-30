@@ -10,6 +10,9 @@ import { LoginComponent } from './login/login.component';
 import { adminGuard } from './auth/admin.guard';
 import { userGuard } from './auth/user.guard';
 
+import { CartComponent } from './cart/cart.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   // if you want the route to be accessible only by certain authorities,
@@ -20,6 +23,10 @@ const routes: Routes = [
   {path:'sales',component:SalesComponent, canActivate: [adminGuard]},
   {path:'login', component:LoginComponent},
   // {path: '', redirectTo: '/login', pathMatch: 'full' }
+
+  {path:'cart', component:CartComponent},
+  {path: 'wishlist', component: WishlistComponent},
+  {path: 'user',component:UserComponent}
 
 ];
 

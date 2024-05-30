@@ -22,7 +22,7 @@
                 <td>{{ item.product.name }}</td>
                 <td>{{ item.stock.stockId }}</td>
                 <td>{{ item.stock.stockAvailable }}</td>
-                <button (click)="addStocks(item.stock.stockId,item.stock.stockAvailable)" [disabled]="item.stock.stockAvailable!<13">🔼</button>
+                <button (click)="addStocks(item.stock.stockId,item.stock.stockAvailable)" [disabled]="item.stock.stockAvailable!>13">🔼</button>
             </tr>
         </tbody>
     </table>

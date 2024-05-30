@@ -1,3 +1,4 @@
+
 <app-nav></app-nav>
 <div >
   <div>
@@ -13,7 +14,7 @@
 <button mat-stroked-button class="btnfeatures" type="submit" (click)="loadUsers()">Get Products</button><br><br>
 
 </div>
-<form>
+<form #myForm="ngForm">
   <h1>Add Products</h1>
   <div>
     <input type="file" class="file-input"
@@ -30,44 +31,54 @@
       <mat-hint ><strong>Please upload image first to get imageUrl</strong> </mat-hint>
   </div>
   </div><br><br>
-<mat-form-field>
+<mat-form-field >
   <mat-label>Enter Id</mat-label>
-  <input matInput  type="text" name="id" [(ngModel)]="id">
+  <input matInput  type="text" name="id" [(ngModel)]="id" ngModel required>
 </mat-form-field>
 <mat-form-field>
   <mat-label>Enter Name</mat-label>
-  <input matInput  type="text" name="name" [(ngModel)]="name">
+  <input matInput  type="text" name="name" [(ngModel)]="name" ngModel required>
 </mat-form-field><br><br>
 <mat-form-field>
-  <mat-label>Enter Id</mat-label>
-  <input matInput  type="text"name="price" [(ngModel)]="price">
+  <mat-label>Enter Price</mat-label>
+  <input matInput  type="text"name="price" [(ngModel)]="price" ngModel required>
 </mat-form-field>
 <mat-form-field>
   <mat-label>Enter Category</mat-label>
-  <input matInput  type="text"name="category" [(ngModel)]="category">
+  <input matInput  type="text"name="category" [(ngModel)]="category" ngModel required>
 </mat-form-field><br><br>
 <mat-form-field class="imgUrl">
 <mat-label>Enter ImageUrl</mat-label>
-<input matInput  type="text" name="imageUrl" [(ngModel)]="imageUrl">
+<input matInput  type="text" name="imageUrl" [(ngModel)]="imageUrl" ngModel required>
 </mat-form-field><br><br>
 <mat-form-field>
 <mat-label>Enter StockId</mat-label>
-<input matInput  type="text" name="stockId" [(ngModel)]="stockId">
+<input matInput  type="text" name="stockId" [(ngModel)]="stockId" ngModel required>
 </mat-form-field>
 <mat-form-field>
 <mat-label>Enter SaleId</mat-label>
-<input matInput  type="text" name="saleId" [(ngModel)]="saleId">
+<input matInput  type="text" name="saleId" [(ngModel)]="saleId" ngModel required>
 </mat-form-field><br><br>
-<button mat-stroked-button class="addProdBtn" type="submit" (click)="saveUser()">Add</button><br>
+<button mat-stroked-button class="addProdBtn" type="submit" (click)="saveUser()" [disabled]="!myForm.valid">Add</button><br>
 </form>
 
 
 
 
 
-
-
-
+<ng-container *ngIf="user as data">
+<div class="filterContain">
+<label for="sort" style="margin-right: 5px; margin-left: 165px;">Sort By</label>
+<select id="sort" [(ngModel)]="column_to_sort" style="margin-right: 10px;">
+  <option *ngFor="let entry of maphash | keyvalue">{{ entry.key }}</option>
+</select>
+<label for="asc_desc" style="margin-right: 5px;">Ascending or Descending</label>
+<select id="asc_desc" [(ngModel)]="asc_desc" style="margin-right: 700px;">
+  <option>Ascending</option>
+  <option>Descending</option>
+</select>
+<button mat-stroked-button [disabled]="!column_to_sort || !asc_desc" (click)="sortBy(column_to_sort, asc_desc)">Sort</button>
+</div>
 <ng-container *ngIf="user as data">
     <table>
       <caption><b>Product List</b></caption>
@@ -76,20 +87,78 @@
         <th>Id</th>
         <th>Name</th>
         <th>Price</th>
-        <th>Image</th>
+        <th>Category</th>
+        <th>ImageUrl</th>
       </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let u of data">
+        <tr *ngFor="let u of data; let i = index">
           <td>{{u.id}}</td>
           <td>{{u.name}}</td>
           <td>{{u.price}}</td>
+          <td>{{u.category}}</td>
           <td>{{u.imageUrl}}</td>
-          <!--<img *ngIf="u.imageUrl" [src]="u.imageUrl" alt="{{ u.name }}">
-          <button type="submit" (click)="decCount()">-</button>
-          {{count}}
-          <button type="submit" (click)="incCount()">+</button>-->
+          <td><button (click)="removeProduct(u.id)">Remove</button></td>
+          <!--<img *ngIf="u.imageUrl" [src]="u.imageUrl" alt="{{ u.name }}">-->
         </tr>
       </tbody>
     </table>
 </ng-container>
+
+
+
+
+<!-- SEARCH FUNCTIONALITY -->
+<!--<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search by name">
+<button (click)="searchUser()">Search</button><br>
+<ng-container *ngIf="searchBool">
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Category</th>
+    </tr>
+    <tbody>
+      <tr *ngFor="let u of searchArray">
+        <td>{{u.id}}</td>
+        <td>{{u.name}}</td>
+        <td>{{u.price}}</td>
+        <td>{{u.category}}</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+<br>
+-->
+
+<!-- FILTERING BY CATEGORY 
+<label for="category">Choose Category To Filter</label>
+<select id="category" [(ngModel)]="new_category">
+  <option *ngFor="let category of cat_set">{{ category }}</option>
+</select>
+<button (click)="filterBy(new_category)">Filter</button><br>
+<ng-container *ngIf="filter_boolean">
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+    <tbody>
+      <tr *ngFor="let u of cat_array">
+        <td>{{u.id}}</td>
+        <td>{{u.name}}</td>
+        <td>{{u.price}}</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+<br>
+-->
+
+
+<!-- ROUTING TO CART AND WISHLIST TO DISPLAY THEM 
+<a href="#" routerlink="/cart">Show Cart</a><br>
+<a href="#" routerlink="/wishlist">Show Wishlist</a>
+-->

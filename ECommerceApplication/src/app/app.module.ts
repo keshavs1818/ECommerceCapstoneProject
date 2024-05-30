@@ -17,23 +17,22 @@ import { NavComponent } from './nav/nav.component'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-
-
-// @NgModule({
-//   declarations: [
-//     AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent, LoginComponent
-
+import {MatButtonModule} from '@angular/material/button';
+import { CartComponent } from './cart/cart.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { UserComponent } from './user/user.component';
+import { UsernavComponent } from './usernav/usernav.component';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
-    AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent, NavComponent,LoginComponent
+    AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent, NavComponent,CartComponent, WishlistComponent, UserComponent, UsernavComponent, LoginComponent
+
   ],
   imports: [
     BrowserModule,BrowserAnimationsModule,HttpClientModule,AppRoutingModule, FormsModule, MatIconModule,MatMenuModule,MatCardModule,MatFormFieldModule,MatInputModule,
-    MatButtonModule
+    MatButtonModule,MatDialogModule
   ],
-  providers: [StocksService, provideAnimationsAsync()],
+  providers: [StocksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

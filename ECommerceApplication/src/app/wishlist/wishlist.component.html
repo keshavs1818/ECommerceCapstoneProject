@@ -1,0 +1,20 @@
+<app-usernav></app-usernav>
+<h1>Wishlist</h1>
+<ng-container>
+    <table>
+      <thead>
+       <tr>
+         <th>Id</th>
+         <th>Name</th>
+         <th>Price</th>
+       </tr>
+      </thead>
+       <tbody>
+         <tr *ngFor="let u of storedWish">
+           <td>{{u.id}}</td>
+           <td>{{u.name}}</td>
+           <td>{{u.price}}</td>
+         </tr>
+       </tbody>
+    </table>
+</ng-container> 

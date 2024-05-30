@@ -1,0 +1,48 @@
+table{
+    margin-left: auto;
+    margin-right:auto ;
+    margin-top: 50px;
+    width:80%;
+    height:auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    border-collapse: collapse;
+}
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+    
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+ tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+thead tr {
+    background-color: #009879;
+    color: #ffffff;
+}
+h1{
+    text-align: center;
+}
+
+td{
+    text-align: center;
+}
+
+.cartbtns{
+    background-color:  #009879;
+    color:white;
+    width:15em;
+    height:3em;
+    margin-right: 20px;
+
+    
+}
+.btncontainer{
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}

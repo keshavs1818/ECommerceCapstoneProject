@@ -9,7 +9,7 @@ export class HomeService {
 
   constructor(private http:HttpClient, private authService: AuthService) { } // Inject HTTPClient using DI
   /* This URL for REST API call to Spring Boot REST API application*/
-  private urlDelete = 'http://localhost:8080/users/';
+  private urlDelete = 'http://localhost:8080/products/';
   private urlPut='http://localhost:8080/users/';
   private urlPost = 'http://localhost:8080/product';
   private urlGet = 'http://localhost:8080/products';
@@ -21,6 +21,7 @@ export class HomeService {
   // headers for authentication
   private authHeaders:HttpHeaders = this.authService.getAuthHeaders();
 
+  private urlSearch = 'http://localhost:8080/products/name/';
   createUser(user:any)
   {
     return this.http.post(this.urlCreateUser, user);
@@ -32,6 +33,10 @@ export class HomeService {
   deleteUser(id:number)
   {
     return this.http.delete(this.urlDelete+id, {headers: this.authHeaders});
+  }
+  searchUser(name:any)
+  {
+    return this.http.get(this.urlSearch+name);
   }
   getUsers()
   {
