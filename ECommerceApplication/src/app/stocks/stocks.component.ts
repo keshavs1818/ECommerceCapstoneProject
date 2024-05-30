@@ -29,4 +29,10 @@ ngOnInit(): void {
   loadAll(){
     this.stockService.getAllStock().subscribe(data=>this.product=data)
   }
+  addStocks(stockid:number,curentStock:number){
+    curentStock+=10;
+    this.stockService.updateStock(stockid,curentStock).subscribe(data=>{console.log(data)
+  console.log("Added 10 Stocks")})
+  console.log(stockid + " " +curentStock)
+  }
 }

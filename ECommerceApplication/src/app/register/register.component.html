@@ -1,9 +1,16 @@
 <form #registrationForm="ngForm" (ngSubmit)="onSubmit()">
     <p>Register:</p>
-    <label>Username</label><br>
-    <input type="text" [(ngModel)]="reg_username"><br>
-    <label>Password</label><br>
-    <input type="password" [(ngModel)]="reg_password"><br>
-    <button (click)="onSubmit">Submit</button>
+    <mat-form-field>
+        <mat-label>Username</mat-label><br>
+        <input matInput type="text" [(ngModel)]="reg_username"><br>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Password</mat-label><br>
+        <input matInput type="password" [(ngModel)]="reg_password"><br>
+    </mat-form-field>
+
+    <button mat-raised-button id="registerButton" (click)="onSubmit">Submit</button>
+    <p>Already have an account? <a routerLink="/login">Click here!</a></p>
 </form>
+
 <p *ngIf="is_error"> {{error_msg}}</p>

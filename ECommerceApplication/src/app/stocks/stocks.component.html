@@ -3,6 +3,7 @@
 
     </head>
     <body>
+        <app-nav></app-nav>
         <h1>Product Stocks</h1>
         
     <table >
@@ -12,7 +13,7 @@
                 <th>Product Name</th>
                 <th>Stock ID</th>
                 <th>Stock Quantity</th>
-                <th>Order</th>
+                <th>Order Stock</th>
             </tr>
         </thead>
         <tbody>
@@ -21,7 +22,7 @@
                 <td>{{ item.product.name }}</td>
                 <td>{{ item.stock.stockId }}</td>
                 <td>{{ item.stock.stockAvailable }}</td>
-                <button>🔼</button>
+                <button (click)="addStocks(item.stock.stockId,item.stock.stockAvailable)" [disabled]="item.stock.stockAvailable!<13">🔼</button>
             </tr>
         </tbody>
     </table>
