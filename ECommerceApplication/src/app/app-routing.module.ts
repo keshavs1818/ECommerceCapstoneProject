@@ -8,9 +8,8 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'register',component:RegisterComponent},
-  {path:'cart', component:CartComponent},
-  {path: 'wishlist', component: WishlistComponent}
-
+  {path:'cart',component:CartComponent},
+  {path:'wishlist',component:WishlistComponent}
 ];
 
 @NgModule({

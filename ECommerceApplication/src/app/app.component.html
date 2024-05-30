@@ -1,27 +1,8 @@
 <body>
+  <h1>{{title}}</h1>
   <router-outlet>
-    <h1>{{title}}</h1>
-    <p>Login:</p>
-    <label>Username</label><br>
-    <input type="text" [(ngModel)]="username"><br>
-    <label>Password</label><br>
-    <input type="text" [(ngModel)]="password"><br>
-    <a href="#" routerLink="home">Login</a><br>
-    <ng-template #registrationForm>
-      <p>Register:</p>
-      <label>Username</label><br>
-      <input type="text" [(ngModel)]="reg_username"><br>
-      <label>Password</label><br>
-      <input type="password" [(ngModel)]="reg_password"><br>
-      <a href="#" routerLink="home">Register</a><br>
-    </ng-template>
-    <a href="#" routerlink="/cart">Show Cart</a><br>
-    <a href="#" routerlink="/wishlist">Show Wishlist</a>
+    <a href="#" routerLink="home">Edit Products</a><br>
+    <a href="#" routerLink="cart">Show Cart</a><br>
+    <a href="#" routerLink="wishlist">Show Wishlist</a>
   </router-outlet>
 </body>
-<p>Register if you are a new customer.</p>
-<a href="#" routerLink="users">Register</a><br>
-<!--a href="#" routerlink="/cart">Show Cart</a><br>
-<router-outlet>
-
-</router-outlet>
