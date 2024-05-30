@@ -118,10 +118,13 @@ public class ProductController {
 			product.setPrice(record.getDouble("price"));
 			product.setCategory(record.getString("category"));
 			product.setImageUrl(record.getString("imageUrl"));
+			product.setStockId(record.getInt("stockId"));
+			product.setSaleId(record.getInt("saleId"));
 			productList.add(product);
 			productService.saveProduct(product);
 			
 		});
+		
 		return "upload completed";
 	}
 	 private final String uploadDir = "src/main/resources/static/uploads/";

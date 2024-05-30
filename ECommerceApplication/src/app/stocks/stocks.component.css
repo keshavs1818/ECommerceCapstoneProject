@@ -27,3 +27,22 @@ thead tr {
     background-color: #009879;
     color: #ffffff;
 }
+li{
+   display: inline;
+   padding:20px; 
+}
+li a{
+    text-decoration: none;
+    color: white
+}
+.navbar {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    background-color: #009879;
+  }
+  
+  .navbar-logo img {
+    display: inline-block; /* Display the image inline with the list items */
+    vertical-align: middle; /* Align the image vertically in the middle */
+    margin-right: 10px; /* Optional: Add some spacing between the logo and the list items */
+  }

@@ -11,16 +11,21 @@ import {MatMenuModule} from '@angular/material/menu';
 import { StocksComponent } from './stocks/stocks.component';
 import { StocksService } from './stocks.service';
 import { SalesComponent } from './sales/sales.component';
-import {MatCardModule} from '@angular/material/card'
-
+import {MatCardModule} from '@angular/material/card';
+import { NavComponent } from './nav/nav.component'
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
-    AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent
+    AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent, NavComponent
   ],
   imports: [
-    BrowserModule,HttpClientModule,AppRoutingModule, FormsModule, MatIconModule,MatMenuModule,MatCardModule
+    BrowserModule,BrowserAnimationsModule,HttpClientModule,AppRoutingModule, FormsModule, MatIconModule,MatMenuModule,MatCardModule,MatFormFieldModule,MatInputModule,
+    MatButtonModule
   ],
   providers: [StocksService],
-  bootstrap: [AppComponent,StocksComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
