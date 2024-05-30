@@ -1,16 +1,17 @@
-<form #registrationForm="ngForm" (ngSubmit)="onSubmit()">
-    <p>Register:</p>
-    <mat-form-field>
-        <mat-label>Username</mat-label><br>
-        <input matInput type="text" [(ngModel)]="reg_username"><br>
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Password</mat-label><br>
-        <input matInput type="password" [(ngModel)]="reg_password"><br>
-    </mat-form-field>
+<div id="form-Container">
+    <form #registrationForm="ngForm" (ngSubmit)="onSubmit()">
+        <p>Register:</p>
+        <mat-form-field>
+            <mat-label>Username</mat-label><br>
+            <input matInput type="text" [(ngModel)]="reg_username"><br>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label><br>
+            <input matInput type="password" [(ngModel)]="reg_password"><br>
+        </mat-form-field>
 
-    <button mat-raised-button id="registerButton" (click)="onSubmit">Submit</button>
-    <p>Already have an account? <a routerLink="/login">Click here!</a></p>
-</form>
-
-<p *ngIf="is_error"> {{error_msg}}</p>
+        <button mat-raised-button id="registerButton" (click)="onSubmit">Submit</button>
+        <p>Already have an account? <a routerLink="/login">Click here!</a></p>
+        <p *ngIf="is_error"> {{error_msg}}</p>
+    </form>
+</div>
