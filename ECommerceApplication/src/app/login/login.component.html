@@ -1,13 +1,26 @@
-<router-outlet>
+<html>
+    <router-outlet>
+    </router-outlet>
+    <head>
 
-</router-outlet>
-<h1>{{title}}</h1>
-<p>Login:</p>
-<label>Username</label><br>
-<input type="text" [(ngModel)]="username"><br>
-<label>Password</label><br>
-<input type="text" [(ngModel)]="password"><br>
-<button (click)="loginAction()"> LoginTest</button>
-<p>Not a user? <a href='#' routerLink="register">Sign up here!</a></p> 
-<!-- <a href="#" routerLink="home">Login</a><br> -->
-<p *ngIf="!validLogin">{{error_msg}}</p>
+    </head>
+    <body>
+        <h1>{{title}}</h1>
+        <div class="loginForm">
+            <p>Login:</p>
+            <mat-form-field>
+                <mat-label>Username</mat-label><br>
+                <input matInput type="text" [(ngModel)]="username"><br>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Password</mat-label><br>
+                <input matInput [type]="hide? 'password' : ' text'" [(ngModel)]="password"><br>
+            </mat-form-field>
+
+            <button id="loginButton" mat-raised-button (click)="loginAction()">Login</button>
+            <p>Not a user? <a href='#' routerLink="register">Sign up here!</a></p> 
+        </div>
+        <!-- <a href="#" routerLink="home">Login</a><br> -->
+        <p *ngIf="!validLogin">{{error_msg}}</p>
+    </body>
+</html>

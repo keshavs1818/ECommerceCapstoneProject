@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 // @NgModule({
@@ -32,7 +33,7 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserModule,BrowserAnimationsModule,HttpClientModule,AppRoutingModule, FormsModule, MatIconModule,MatMenuModule,MatCardModule,MatFormFieldModule,MatInputModule,
     MatButtonModule
   ],
-  providers: [StocksService],
+  providers: [StocksService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

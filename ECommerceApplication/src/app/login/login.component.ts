@@ -22,6 +22,9 @@ export class LoginComponent {
   welcome_msg:any;
   validLogin:boolean = true;
 
+  hide = true;
+
+
   function() {
     this.error_msg = "Username and password isn't established. Please register if you're a newcomer. Thank you.";
   }

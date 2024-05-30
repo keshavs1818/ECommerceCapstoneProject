@@ -16,8 +16,8 @@ const routes: Routes = [
   // adminGuard: admins only, // userGuard: both users and admin (but have to be logged in)
   {path:'home',component:HomeComponent, canActivate: [adminGuard]},
   {path:'register',component:RegisterComponent},
-  {path:'stocks',component:StocksComponent},
-  {path:'sales',component:SalesComponent},
+  {path:'stocks',component:StocksComponent, canActivate: [adminGuard]},
+  {path:'sales',component:SalesComponent, canActivate: [adminGuard]},
   {path:'login', component:LoginComponent},
   // {path: '', redirectTo: '/login', pathMatch: 'full' }
 
