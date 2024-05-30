@@ -1,1 +1,64 @@
-<p>user works!</p>
+<label for="sort">Sort By</label>
+<select id="sort" [(ngModel)]="column_to_sort">
+  <option *ngFor="let entry of maphash | keyvalue">{{ entry.key }}</option>
+</select>
+<label for="asc_desc">Ascending or Descending</label>
+<select id="asc_desc" [(ngModel)]="asc_desc">
+  <option>Ascending</option>
+  <option>Descending</option>
+</select>
+<button [disabled]="!column_to_sort || !asc_desc" (click)="sortBy(column_to_sort, asc_desc)">Sort</button>
+<ng-container *ngIf="user as data">
+    <table>
+      <caption><b>Product List</b></caption>
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Image</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of data; let i = index">
+          <td>{{u.id}}</td>
+          <td>{{u.name}}</td>
+          <td>{{u.price}}</td>
+          <td>{{u.imageUrl}}</td>
+          <img *ngIf="u.imageUrl" [src]="u.imageUrl" alt="{{ u.name }}">
+          <button type="submit" (click)="decCount()">-</button>
+          {{count}}
+          <button type="submit" (click)="incCount()">+</button>
+          <td>{{u.category}}</td>
+          {{add(u.category)}}
+          <button type="submit" (click)="decCount(i)">-</button>
+          {{counts[i]}}
+          <button type="submit" (click)="incCount(i)">+</button><br>
+          {{checkCart(i)}}
+          {{checkWish(i)}}
+          <button [disabled]="disabled_cart[i]" (click)="updateAdd(u.id, u.name, u.price, u.category, counts[i])"><b>Add To Cart</b></button><br>
+          <button [disabled]="disabled_wish[i]" (click)="updateWish(u.id, u.name, u.price, u.category)"><b>Add To Wishlist</b></button>
+        </tr>
+      </tbody>
+    </table>
+</ng-container>
+<br>
+
+<div class="flexbox">
+    <mat-card *ngFor="let item of data" >
+        <mat-card-header>
+            
+            <mat-card-title>Product Name:{{item.name}}</mat-card-title>
+            <mat-card-subtitle>Product Id: {{item.id}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-content>
+        <section>
+            <div class="grid-container">
+                <label>Quantity:</label>
+                <label>Date:</label>
+               
+              </div>
+        </section>
+    </mat-content>
+    </mat-card>
+    </div>
