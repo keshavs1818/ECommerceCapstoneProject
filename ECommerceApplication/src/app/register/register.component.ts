@@ -11,13 +11,20 @@ export class RegisterComponent {
   constructor(private router:Router, private http:HttpClient) {}
   reg_username:string;
   reg_password:string;
+  reg_email;
+  reg_address;
 
   payLoadUser:any;
 
   error_msg:string;
   is_error:boolean = false;
   onSubmit(): any {
-    this.payLoadUser = {"username":this.reg_username, "password":this.reg_password}
+    this.payLoadUser = {
+      "username":this.reg_username,
+      "password":this.reg_password,
+      "email": this.reg_email,
+      "address": this.reg_address
+    }
     this.http.post('http://localhost:8080/createUser', this.payLoadUser).subscribe(
       (response)=>{
         // successfully create user
