@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <ng-container>
+<ng-container>
     <table>
        <tr>
          <th>Id</th>
@@ -17,18 +9,15 @@
          <th>Payment</th>
        </tr>
        <tbody>
-         <tr *ngFor="let u of cart_array">
+         <tr *ngFor="let u of storedCart">
            <td>{{u.a}}</td>
            <td>{{u.b}}</td>
            <td>{{u.c}}</td>
            <td>{{u.d}}</td>
            <td>{{u.e}}</td>
            <td>{{u.c * u.e}}</td>
-           {{updateSum(u.c * u.e)}}
          </tr>
        </tbody>
     </table>
     <p>Total</p>
-  </ng-container>
-</body>
-</html>
+</ng-container>

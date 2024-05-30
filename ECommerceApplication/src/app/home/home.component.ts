@@ -78,11 +78,13 @@ export class HomeComponent {
   updateAdd(id:number, name:string, price:any, category:any, count:any) {
     this.new_obj = {a: id, b: name, c: price, d: category, e: count};
     this.cart_array.push(this.new_obj);
+    localStorage.setItem("cart", JSON.stringify(this.cart_array));
     console.log(this.cart_array);
   }
   updateWish(id:number, name:string, price:any, category:any) {
     this.new_obj = {id: id, name: name, price: price, category: category};
     this.wish_array.push(this.new_obj);
+    localStorage.setItem("wish", JSON.stringify(this.wish_array));
   }
   sortBy(column_name:any, asc_desc:any) {
     const sortOrder = asc_desc === "Ascending" ? 1 : -1;
