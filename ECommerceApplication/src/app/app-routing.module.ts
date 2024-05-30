@@ -4,12 +4,16 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { StocksComponent } from './stocks/stocks.component';
 import { SalesComponent } from './sales/sales.component';
+import { CartComponent } from './cart/cart.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'register',component:RegisterComponent},
   {path:'stocks',component:StocksComponent},
-  {path:'sales',component:SalesComponent}
+  {path:'sales',component:SalesComponent},
+  {path:'cart', component:CartComponent},
+  {path: 'wishlist', component: WishlistComponent}
 
 ];
 

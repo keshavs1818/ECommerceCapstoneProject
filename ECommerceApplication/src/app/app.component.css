@@ -13,3 +13,8 @@
 h1 {
     text-align: center;
 }
+
+body {
+    background-color: rgb(233, 224, 224);
+    min-height: 400vh;
+}
