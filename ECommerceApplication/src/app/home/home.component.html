@@ -1,73 +1,94 @@
-<div class="navbar is-dark">
-<div class="navbar-menu">
-  <div class="navbar-start">
-    <a class="navbar-item" href="">Home</a>
-    <a class="navbar-item">Stocks</a>
-    <a class="navbar-item">Sales</a>
+<app-nav></app-nav>
+<div >
+  <div>
+    <input type="file" class="file-input"
+         (change)="onFileSelected($event)" #fileUpload>
+  <div class="file-upload">
+  <button mat-mini-fab color="primary" id="uplfilebtn" class="upload-btn md-raised md-cornered"
+        (click)="fileUpload.click()">
+          <mat-icon>attach_file</mat-icon>
+      </button>
+      <span class="bulkspan" id="uplfilebtn">Bulk Upload</span>
+    </div>
+<button mat-stroked-button class="btnfeatures" type="submit" (click)="loadUsers()">Get Products</button><br><br>
+
+</div>
+<form>
+  <h1>Add Products</h1>
+  <div>
+    <input type="file" class="file-input"
+         (change)="onImgSelected($event)" #imgUpload>
+  
+  <div class="file-upload">
+  
+     
+    <label>Upload image</label>
+      <button mat-mini-fab color="primary" class="upload-btn"
+        (click)="imgUpload.click()">
+          <mat-icon>attach_file</mat-icon>
+      </button><br>
+      <mat-hint ><strong>Please upload image first to get imageUrl</strong> </mat-hint>
   </div>
-</div>
-</div>
-<p>Please enter whatever items you want:</p>
-<br>
-<button type="submit" (click)="loadUsers()">Get Users</button><br>
-<br>
-<label><b>Add User</b></label><br>
-<label>Enter ID to add</label><br>
-<input type="text" [(ngModel)]="id"><br>
-<label>Enter Product Name to add</label><br>
-<input type="text" [(ngModel)]="name"><br>
-<label>Enter Product Price to add</label><br>
-<input type="text" [(ngModel)]="price"><br>
-<button type="submit" (click)="saveUser()">Add</button><br>
+  </div><br><br>
+<mat-form-field>
+  <mat-label>Enter Id</mat-label>
+  <input matInput  type="text" name="id" [(ngModel)]="id">
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Enter Name</mat-label>
+  <input matInput  type="text" name="name" [(ngModel)]="name">
+</mat-form-field><br><br>
+<mat-form-field>
+  <mat-label>Enter Id</mat-label>
+  <input matInput  type="text"name="price" [(ngModel)]="price">
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Enter Category</mat-label>
+  <input matInput  type="text"name="category" [(ngModel)]="category">
+</mat-form-field><br><br>
+<mat-form-field class="imgUrl">
+<mat-label>Enter ImageUrl</mat-label>
+<input matInput  type="text" name="imageUrl" [(ngModel)]="imageUrl">
+</mat-form-field><br><br>
+<mat-form-field>
+<mat-label>Enter StockId</mat-label>
+<input matInput  type="text" name="stockId" [(ngModel)]="stockId">
+</mat-form-field>
+<mat-form-field>
+<mat-label>Enter SaleId</mat-label>
+<input matInput  type="text" name="saleId" [(ngModel)]="saleId">
+</mat-form-field><br><br>
+<button mat-stroked-button class="addProdBtn" type="submit" (click)="saveUser()">Add</button><br>
+</form>
 
-<div>
-  <input type="file" class="file-input"
-       (change)="onFileSelected($event)" #fileUpload>
 
-<div class="file-upload">
 
-   
 
-    <button mat-mini-fab color="primary" class="upload-btn"
-      (click)="fileUpload.click()">
-        <mat-icon>attach_file</mat-icon>
-    </button>
-  
-</div>
 
-<div>
-  <input type="file" class="file-input"
-       (change)="onImgSelected($event)" #fileUpload>
 
-<div class="file-upload">
 
-   
 
-    <button mat-mini-fab color="primary" class="upload-btn"
-      (click)="fileUpload.click()">
-        <mat-icon>attach_file</mat-icon>
-    </button>
-  
-</div>
-</div>
 <ng-container *ngIf="user as data">
     <table>
+      <caption><b>Product List</b></caption>
+      <thead>
       <tr>
         <th>Id</th>
         <th>Name</th>
         <th>Price</th>
         <th>Image</th>
       </tr>
+      </thead>
       <tbody>
         <tr *ngFor="let u of data">
           <td>{{u.id}}</td>
           <td>{{u.name}}</td>
           <td>{{u.price}}</td>
           <td>{{u.imageUrl}}</td>
-          <img *ngIf="u.imageUrl" [src]="u.imageUrl" alt="{{ u.name }}">
+          <!--<img *ngIf="u.imageUrl" [src]="u.imageUrl" alt="{{ u.name }}">
           <button type="submit" (click)="decCount()">-</button>
           {{count}}
-          <button type="submit" (click)="incCount()">+</button>
+          <button type="submit" (click)="incCount()">+</button>-->
         </tr>
       </tbody>
     </table>

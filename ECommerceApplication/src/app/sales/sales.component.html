@@ -3,16 +3,20 @@
 
     </head>
     <body>
+        <app-nav></app-nav>
         <h1>Product Sales</h1>
     <div class="flexbox">
     <mat-card *ngFor="let item of product" >
         <mat-card-header>
+            
             <mat-card-title>Product Name:{{item.product.name}}</mat-card-title>
             <mat-card-subtitle>Product Id: {{item.product.id}}</mat-card-subtitle>
         </mat-card-header>
         <mat-content>
         <section>
             <div class="grid-container">
+                <label>Quantity:</label>
+                <label>Date:</label>
                 <div *ngFor="let u of item.sale.quantities; let i = index">
                   <p>{{u}}</p>
                   <p>{{item.sale.dates[i]| date:"short"}}</p>
@@ -22,26 +26,6 @@
     </mat-content>
     </mat-card>
     </div>
-    <table >
-        <thead>
-            <tr>
-                <th>Product ID</th>
-                <th>Product Name</th>
-                <th>Sales ID</th>
-                <th>Sales Quantity</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of product">
-                <td>{{ item.product.id }}</td>
-                <td>{{ item.product.name }}</td>
-                <td>{{ item.sale.saleId }}</td>
-                <td>{{ item.sale.quantities }}</td>
-                <td>{{ item.sale.dates }}</td>
-                <button>Order stock</button>
-            </tr>
-        </tbody>
-    </table>
     </body>
 </html>
 

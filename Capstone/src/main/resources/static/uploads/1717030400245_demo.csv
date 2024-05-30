@@ -1,0 +1,3 @@
+id, name, price, category, imageUrl,stockId,saleId
+11, bananas,2, fruit, http://localhost:8080/uploads/1716495489746_bananas.jpg,22,22
+12, grapes,5, fruit, fruits.jpg,33,33

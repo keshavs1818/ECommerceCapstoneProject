@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { StocksComponent } from '../stocks/stocks.component';
-import { StocksService } from '../stocks.service';
 import { SalesService } from '../sales.service';
-import { MatCardModule } from '@angular/material/card';
+
 
 @Component({
   selector: 'app-sales',
