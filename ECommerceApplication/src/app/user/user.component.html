@@ -1,3 +1,5 @@
+<app-usernav></app-usernav>
+<div class="container">
 <label for="sort">Sort By</label>
 <select id="sort" [(ngModel)]="column_to_sort">
   <option *ngFor="let entry of maphash | keyvalue">{{ entry.key }}</option>
@@ -8,7 +10,8 @@
   <option>Descending</option>
 </select>
 <button [disabled]="!column_to_sort || !asc_desc" (click)="sortBy(column_to_sort, asc_desc)">Sort</button>
-<ng-container *ngIf="user as data">
+</div>
+<!--<ng-container *ngIf="user as data">
     <table>
       <caption><b>Product List</b></caption>
       <thead>
@@ -24,11 +27,8 @@
           <td>{{u.id}}</td>
           <td>{{u.name}}</td>
           <td>{{u.price}}</td>
-          <td>{{u.imageUrl}}</td>
+          
           <img *ngIf="u.imageUrl" [src]="u.imageUrl" alt="{{ u.name }}">
-          <button type="submit" (click)="decCount()">-</button>
-          {{count}}
-          <button type="submit" (click)="incCount()">+</button>
           <td>{{u.category}}</td>
           {{add(u.category)}}
           <button type="submit" (click)="decCount(i)">-</button>
@@ -43,22 +43,30 @@
     </table>
 </ng-container>
 <br>
-
+-->
 <div class="flexbox">
-    <mat-card *ngFor="let item of data" >
+    <mat-card *ngFor="let item of user; let i = index" >
         <mat-card-header>
             
             <mat-card-title>Product Name:{{item.name}}</mat-card-title>
-            <mat-card-subtitle>Product Id: {{item.id}}</mat-card-subtitle>
+            <mat-card-subtitle >Product Id: {{item.id}}</mat-card-subtitle>
         </mat-card-header>
+        <img mat-card-image src="{{item.imageUrl}}" alt="{{item.name}}">
         <mat-content>
         <section>
-            <div class="grid-container">
-                <label>Quantity:</label>
-                <label>Date:</label>
-               
-              </div>
+            <p>Price: ${{item.price}}</p>
+            <p class="cat">Category: {{item.category}}</p>
         </section>
+        <button type="submit" (click)="decCount(i)">-</button>
+        {{counts[i]}}
+        <button type="submit" (click)="incCount(i)">+</button><br><br>
     </mat-content>
+    <mat-card-actions>
+       
+        {{checkCart(i)}}
+        {{checkWish(i)}}
+        <button class="matBtn" [disabled]="disabled_cart[i]" (click)="updateAdd(item.id, item.name, item.price, item.category, counts[i],item.stockId, item.saleId)"><b>Add To Cart</b></button>
+        <button [disabled]="disabled_wish[i]" (click)="updateWish(item.id, item.name, item.price, item.category)"><b>Add To Wishlist</b></button>
+    </mat-card-actions>
     </mat-card>
     </div>

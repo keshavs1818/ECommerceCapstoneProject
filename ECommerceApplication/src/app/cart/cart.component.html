@@ -1,13 +1,19 @@
+<app-usernav></app-usernav>
+<h1>Cart</h1>
 <ng-container>
     <table>
+      <thead>
        <tr>
+       
          <th>Id</th>
          <th>Name</th>
          <th>Price</th>
          <th>Category</th>
          <th>Count</th>
          <th>Payment</th>
+       
        </tr>
+      </thead>
        <tbody>
          <tr *ngFor="let u of storedCart">
            <td>{{u.a}}</td>
@@ -20,4 +26,8 @@
        </tbody>
     </table>
     <p>Total</p>
+    <div class="btncontainer">
+    <button class="cartbtns" mat-stroked-button (click)="processPurchases(storedCart)">Buy</button>
+    <button class="cartbtns" mat-stroked-button (click)="clearCart()">Clear Cart</button>
+  </div>
 </ng-container>

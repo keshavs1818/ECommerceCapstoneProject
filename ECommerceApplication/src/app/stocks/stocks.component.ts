@@ -34,5 +34,6 @@ ngOnInit(): void {
     this.stockService.updateStock(stockid,curentStock).subscribe(data=>{console.log(data)
   console.log("Added 10 Stocks")})
   console.log(stockid + " " +curentStock)
+  window.location.reload();
   }
 }

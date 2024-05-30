@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.cogent</groupId>
-	<artifactId>SpringBootRESTAPI</artifactId>
+	<artifactId>SalesMicroService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SpringBootRESTAPI</name>
+	<name>SalesMicroService</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>

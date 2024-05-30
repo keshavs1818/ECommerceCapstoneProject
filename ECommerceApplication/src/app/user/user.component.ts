@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -7,16 +7,19 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
-export class UserComponent {
+export class UserComponent implements OnInit{
  
   
   constructor(private homeService:HomeService , private http:HttpClient){}
+  ngOnInit(): void {
+    this.loadUsers();
+  }
   disabled_cart: any;
   disabled_wish: any;
   sum: number;
   new_obj:object;
-  cart_array: any;
-  wish_array: any;
+  cart_array: any[] = []
+  wish_array: any[] = []
   temp_array: any;
   cat_set: any;
   searchBool: boolean;
@@ -30,12 +33,17 @@ export class UserComponent {
   asc_desc:any;
   message:any;
   column_to_sort:any;
+  count:number=0;
+  stockId:number;
+  saleId:number;
 
   maphash = {
     id: "id",
     name: "name",
     price: "price",
-    category: "category"
+    category: "category",
+    stockId: "stockId",
+    saleId:"saleId"
   };
  
 
@@ -48,8 +56,9 @@ export class UserComponent {
   updateSum(num:number) {
     this.sum += num;
   }
-  updateAdd(id:number, name:string, price:any, category:any, count:any) {
-    this.new_obj = {a: id, b: name, c: price, d: category, e: count};
+  updateAdd(id:number, name:string, price:any, category:any, count:any, stockId:number, saleId:number) {
+  
+    this.new_obj = {a: id, b: name, c: price, d: category, e: count,f:stockId,g:saleId};
     this.cart_array.push(this.new_obj);
     localStorage.setItem("cart", JSON.stringify(this.cart_array));
     console.log(this.cart_array);
@@ -73,7 +82,7 @@ export class UserComponent {
 
     console.log(this.temp_array);
   }
-  add(category:string) {
+  add(category:any) {
     this.cat_set.add(category);
   }
   searchUser () 

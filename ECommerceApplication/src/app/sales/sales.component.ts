@@ -19,4 +19,5 @@ id:number
 loadAll(){
   this.salesService.getAllSales().subscribe(data=>this.product=data)
 }
+
 }

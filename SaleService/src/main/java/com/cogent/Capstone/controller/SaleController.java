@@ -67,9 +67,9 @@ public class SaleController {
 	}
 				@PutMapping(value="/sales/{saleId}")//id coming from path url is in string format
 				//public User updateUser(@RequestBody User user)
-				public Sale updateStock(@PathVariable int id,@RequestBody Sale stock)
+				public Sale updateStock(@PathVariable int saleId,@RequestBody Sale stock)
 				{
-			    	Sale stock1=saleService.updateStock(id,stock);
+			    	Sale stock1=saleService.updateStock(saleId,stock);
 			    	return stock1;
 				}
 				

@@ -114,9 +114,9 @@ export class HomeComponent {
     alert("Product Created")
     console.log("User updated");
   }
-  removeUser() 
+  removeProduct(id:number) 
   {
-    this.homeService.deleteUser(this.id).subscribe(data=>console.log(data));
+    this.homeService.deleteUser(id).subscribe(data=>console.log(data));
     console.log("User deleted");
   }
   searchUser () 
