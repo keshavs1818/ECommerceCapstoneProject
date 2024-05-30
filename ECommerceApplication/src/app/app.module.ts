@@ -19,9 +19,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import { CartComponent } from './cart/cart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { UserComponent } from './user/user.component';
 @NgModule({
   declarations: [
-    AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent, NavComponent,CartComponent, WishlistComponent
+    AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent, NavComponent,CartComponent, WishlistComponent, UserComponent
 
   ],
   imports: [
