@@ -1,0 +1,3 @@
+id, name, price, category, imageUrl
+7, cherries, 2.0, fruit, src/main/resources/static/uploads/1716495489746_bananas.jpg
+8, grapes, 5.0 , fruit, fruits.jpg
