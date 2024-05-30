@@ -9,7 +9,16 @@ import { HttpClient } from '@angular/common/http';
 export class CartComponent implements OnInit {
   constructor( private http:HttpClient ){}
   storedCart:any;
+  sum = 0;
   ngOnInit(): void {
     this.storedCart = JSON.parse(localStorage.getItem("cart"));
+  }
+  updateSum(number:number) {
+    this.sum += number;
+    console.log(this.sum);
+  }
+
+  resetSum() {
+    this.sum = 0;
   }
 }

@@ -16,8 +16,11 @@
            <td>{{u.d}}</td>
            <td>{{u.e}}</td>
            <td>{{u.c * u.e}}</td>
+           {{updateSum(u.c * u.e)}}
          </tr>
        </tbody>
     </table>
     <p>Total</p>
+    <p>{{sum}}</p>
+    {{resetSum()}}
 </ng-container>
