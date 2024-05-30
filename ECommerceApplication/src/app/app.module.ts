@@ -13,15 +13,16 @@ import { StocksService } from './stocks.service';
 import { SalesComponent } from './sales/sales.component';
 import { LoginComponent } from './login/login.component';
 
+import {MatCardModule} from '@angular/material/card'
 
 @NgModule({
   declarations: [
     AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent, LoginComponent
   ],
   imports: [
-    BrowserModule,HttpClientModule,AppRoutingModule, FormsModule, MatIconModule,MatMenuModule
+    BrowserModule,HttpClientModule,AppRoutingModule, FormsModule, MatIconModule,MatMenuModule,MatCardModule
   ],
   providers: [StocksService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,StocksComponent]
 })
 export class AppModule { }

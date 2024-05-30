@@ -4,7 +4,24 @@
     </head>
     <body>
         <h1>Product Sales</h1>
-      
+    <div class="flexbox">
+    <mat-card *ngFor="let item of product" >
+        <mat-card-header>
+            <mat-card-title>Product Name:{{item.product.name}}</mat-card-title>
+            <mat-card-subtitle>Product Id: {{item.product.id}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-content>
+        <section>
+            <div class="grid-container">
+                <div *ngFor="let u of item.sale.quantities; let i = index">
+                  <p>{{u}}</p>
+                  <p>{{item.sale.dates[i]| date:"short"}}</p>
+                </div>
+              </div>
+        </section>
+    </mat-content>
+    </mat-card>
+    </div>
     <table >
         <thead>
             <tr>

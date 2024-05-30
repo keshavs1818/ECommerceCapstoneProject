@@ -34,10 +34,16 @@ export class HomeComponent {
     this.homeService.deleteUser(this.id).subscribe(data=>console.log(data));
     console.log("User deleted");
   }
-  loadUsers()
+  async loadUsers()
   {
-    this.homeService.getUsers().subscribe(data=>this.user=data);
-    console.log("Users loaded");
+    try {
+      this.user = await this.homeService.getUsers().toPromise();
+      console.log("Users loaded");
+      console.log(this.user);
+    } catch(error) {
+      console.log(error)
+    }
+    
   }
   decCount()
   {
@@ -66,7 +72,7 @@ export class HomeComponent {
       const formData= new FormData();
       formData.append("file",file);
       this.homeService.imgUpload(formData).subscribe();
-      console.log("image sent")
+      console.log("Image sent " + this.fileName)
       
     }
   }
