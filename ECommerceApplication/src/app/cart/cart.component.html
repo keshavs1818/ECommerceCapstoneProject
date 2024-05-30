@@ -17,6 +17,7 @@
            <td>{{u.e}}</td>
            <td>{{u.c * u.e}}</td>
            {{updateSum(u.c * u.e)}}
+           <button (click)="removeUser(u, u.c * u.e)">Remove</button>
          </tr>
        </tbody>
     </table>

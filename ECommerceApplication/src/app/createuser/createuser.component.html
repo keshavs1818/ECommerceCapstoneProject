@@ -1,37 +1,37 @@
 
-<p>Please enter whatever items you want:</p>
+<p>Please enter whatever users you want:</p>
 
 <!-- GETTING THE PRODUCTS -->
-<button type="submit" (click)="loadUsers()">Get Products</button><br>
+<button type="submit" (click)="loadUsers()">Get Users</button><br>
 <br>
-<label><b>Add Product</b></label><br>
-<label>Enter Product ID to add</label><br>
-<input type="text" [(ngModel)]="id"><br>
-<label>Enter Product Name to add</label><br>
-<input type="text" [(ngModel)]="name"><br>
-<label>Enter Product Price to add</label><br>
-<input type="text" [(ngModel)]="price"><br>
-<label>Enter Product Category to add</label><br>
-<input type="text" [(ngModel)]="category"><br>
+<mat-form-field>
+    <mat-label>Enter Id</mat-label>
+    <input matInput type="text" name="id" [(ngModel)]="id">
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Enter Username</mat-label>
+    <input matInput type="text" name="username" [(ngModel)]="username">
+</mat-form-field><br><br>
+<mat-form-field>
+    <mat-label>Enter Password</mat-label>
+    <input matInput type="text" name="password" [(ngModel)]="password">
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Enter Email</mat-label>
+    <input matInput type="text" name="email" [(ngModel)]="email">
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Enter Address</mat-label>
+    <input matInput type="text" name="address" [(ngModel)]="address">
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Enter Role</mat-label>
+    <input matInput type="text" name="role" [(ngModel)]="role">
+</mat-form-field>
 <button type="submit" (click)="saveUser()">Add</button><br>
 
 
-
-<!-- BULK UPLOADING IMAGES -->
-<div>
-  <input type="file" class="file-input"
-       (change)="onFileSelected($event)" #fileUpload>
-
-<div class="file-upload">
-    <button mat-mini-fab color="primary" class="upload-btn"
-      (click)="fileUpload.click()">
-        <mat-icon>attach_file</mat-icon>
-    </button>
-</div>
-
-
-
-<!-- SORTING THE PRODUCTS -->
+<!-- SORTING THE USERS -->
 <label for="sort">Sort By</label>
 <select id="sort" [(ngModel)]="column_to_sort">
   <option *ngFor="let entry of maphash | keyvalue">{{ entry.key }}</option>
@@ -46,24 +46,20 @@
     <table>
       <tr>
         <th>Id</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Category</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Role</th>
       </tr>
       <tbody>
         <tr *ngFor="let u of data; let i = index">
           <td>{{u.id}}</td>
-          <td>{{u.name}}</td>
-          <td>{{u.price}}</td>
-          <td>{{u.category}}</td>
-          {{add(u.category)}}
-          <button type="submit" (click)="decCount(i)">-</button>
-          {{counts[i]}}
-          <button type="submit" (click)="incCount(i)">+</button><br>
-          {{checkCart(i)}}
-          {{checkWish(i)}}
-          <button [disabled]="disabled_cart[i]" (click)="updateAdd(u.id, u.name, u.price, u.category, counts[i])"><b>Add To Cart</b></button><br>
-          <button [disabled]="disabled_wish[i]" (click)="updateWish(u.id, u.name, u.price, u.category)"><b>Add To Wishlist</b></button>
+          <td>{{u.username}}</td>
+          <td>{{u.password}}</td>
+          <td>{{u.email}}</td>
+          <td>{{u.address}}</td>
+          <td>{{u.role}}</td>
         </tr>
       </tbody>
     </table>
@@ -78,16 +74,20 @@
   <table>
     <tr>
       <th>Id</th>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Category</th>
+      <th>Username</th>
+      <th>Password</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Role</th>
     </tr>
     <tbody>
       <tr *ngFor="let u of searchArray">
         <td>{{u.id}}</td>
         <td>{{u.name}}</td>
-        <td>{{u.price}}</td>
-        <td>{{u.category}}</td>
+        <td>{{u.password}}</td>
+        <td>{{u.email}}</td>
+        <td>{{u.address}}</td>
+        <td>{{u.role}}</td>
       </tr>
     </tbody>
   </table>

@@ -9,10 +9,12 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { CartComponent } from './cart/cart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { Home2Component } from './home2/home2.component';
+import { CreateuserComponent } from './createuser/createuser.component';
 
 @NgModule({
   declarations: [
-    AppComponent,HomeComponent, RegisterComponent, CartComponent, WishlistComponent
+    AppComponent,HomeComponent, RegisterComponent, CartComponent, WishlistComponent, Home2Component, CreateuserComponent
   ],
   imports: [
     BrowserModule,HttpClientModule,AppRoutingModule, FormsModule, MatIconModule

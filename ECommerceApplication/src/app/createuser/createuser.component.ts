@@ -13,9 +13,11 @@ export class HomeComponent {
   constructor(private homeService:HomeService ,private http:HttpClient){}
   // Columns For Product Details
   id:any;
-  name:any;
-  price:any;
-  category:any;
+  username:any;
+  password:any;
+  email:any;
+  address:any;
+  role:any;
 
   // Name to Search From
   searchText:any;
@@ -54,9 +56,11 @@ export class HomeComponent {
 
   maphash = {
     id: "id",
-    name: "name",
-    price: "price",
-    category: "category"
+    username: "username",
+    password: "password",
+    email: "email",
+    address: "address",
+    role: "role",
   };
 
   checkCart(index:number) {
@@ -68,14 +72,14 @@ export class HomeComponent {
   updateSum(num:number) {
     this.sum += num;
   }
-  updateAdd(id:number, name:string, price:any, category:any, count:any) {
-    this.new_obj = {a: id, b: name, c: price, d: category, e: count};
+  updateAdd(id:number, username:any, password:any, email:any, address:any, role:any, count:any) {
+    this.new_obj = {a: id, b: username, c: password, d: email, e: address, f: role};
     this.cart_array.push(this.new_obj);
     localStorage.setItem("cart", JSON.stringify(this.cart_array));
     console.log(this.cart_array);
   }
-  updateWish(id:number, name:string, price:any, category:any) {
-    this.new_obj = {id: id, name: name, price: price, category: category};
+  updateWish(id:number, username:any, password:any, email:any, address:any, role:any) {
+    this.new_obj = {id: id, b: username, c: password, d: email, e: address, f: role};
     this.wish_array.push(this.new_obj);
     localStorage.setItem("wish", JSON.stringify(this.wish_array));
   }
@@ -98,8 +102,7 @@ export class HomeComponent {
   }
   saveUser () 
   {
-    this.payLoadUser = {'id': this.id, 'name': this.name, 'price': this.price, 'category': this.category};
-    this.message = "The product " + this.name + " with id " + this.id + " has been added.";
+    this.payLoadUser = {'id': this.id, 'username': this.username, 'password': this.password, 'email': this.email, 'address': this.address, 'role': this.role};
     this.homeService.createUser(this.payLoadUser).subscribe(data=>console.log(data));
     console.log("User updated");
   }
