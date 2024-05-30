@@ -4,7 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { SalesService } from '../sales.service';
 import { StocksService } from '../stocks.service';
-import * as Papa from 'papaparse';
+// import * as Papa from 'papaparse';
+import Papa from 'papaparse';
 
 @Component({
   selector: 'app-home',
