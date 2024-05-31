@@ -22,9 +22,10 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { UserComponent } from './user/user.component';
 import { UsernavComponent } from './usernav/usernav.component';
 import { MatDialogModule } from '@angular/material/dialog';
+
 @NgModule({
   declarations: [
-    AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent, NavComponent,CartComponent, WishlistComponent, UserComponent, UsernavComponent
+    AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent, NavComponent,CartComponent, WishlistComponent, UserComponent, UsernavComponent, 
 
   ],
   imports: [

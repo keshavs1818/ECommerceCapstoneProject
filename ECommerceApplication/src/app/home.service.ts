@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class HomeService {
   }
   searchProducts(name:any)
   {
-    return this.http.get(this.urlSearch+name);
+    return this.http.get(this.urlSearch+name).pipe(map(data => Array.isArray(data) ? data : [data]));;
   }
   getProducts()
   {
