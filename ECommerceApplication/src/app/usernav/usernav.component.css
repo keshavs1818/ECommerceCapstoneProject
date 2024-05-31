@@ -19,4 +19,7 @@ li{
      margin-right: 10px; /* Optional: Add some spacing between the logo and the list items */
    }
 
-   
+#logoutLink {
+  text-decoration: none;
+  color: white;
+}

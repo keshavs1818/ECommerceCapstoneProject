@@ -18,7 +18,7 @@
             </mat-form-field>
 
             <button id="loginButton" mat-raised-button (click)="loginAction()">Login</button>
-            <p>Not a user? <a href='#' routerLink="register">Sign up here!</a></p> 
+            <p>Not a user? <a href='#' routerLink="/register">Sign up here!</a></p> 
         </div>
         <!-- <a href="#" routerLink="home">Login</a><br> -->
         <p *ngIf="!validLogin">{{error_msg}}</p>

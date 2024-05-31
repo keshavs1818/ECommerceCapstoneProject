@@ -3,19 +3,19 @@
         <p style="font-size: 25px;">Register:</p>
         <mat-form-field>
             <mat-label>Username</mat-label><br>
-            <input matInput type="text" [(ngModel)]="reg_username"><br>
+            <input matInput type="text" [(ngModel)]="reg_username" name="reg_username"><br>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Password</mat-label><br>
-            <input matInput type="password" [(ngModel)]="reg_password"><br>
+            <input matInput type="password" [(ngModel)]="reg_password" name="reg_password"><br>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Email</mat-label><br>
-            <input matInput type="email" [(ngModel)]="reg_email"><br>
+            <input matInput type="email" [(ngModel)]="reg_email" name="reg_email"><br>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Address</mat-label><br>
-            <input matInput type="text" [(ngModel)]="reg_address"><br>
+            <input matInput type="text" [(ngModel)]="reg_address" name="reg_address"><br>
         </mat-form-field>
 
         <button mat-raised-button id="registerButton" (click)="onSubmit">Submit</button>

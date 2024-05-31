@@ -11,8 +11,8 @@ export class RegisterComponent {
   constructor(private router:Router, private http:HttpClient) {}
   reg_username:string;
   reg_password:string;
-  reg_email;
-  reg_address;
+  reg_email:string;
+  reg_address:string;
 
   payLoadUser:any;
 

@@ -53,7 +53,12 @@ export class LoginComponent {
         this.authService.setAuthHeaders(response.token);
         this.authService.setAuthRole(response.role);
         // routes to home page
-        this.router.navigate(['/home']);
+        if (response.role == "ROLE_ADMIN") {
+          this.router.navigate(['/home']);
+        } else {
+          this.router.navigate(['/user']);
+        }
+
       },
       (error)=>{
         // logging error message
