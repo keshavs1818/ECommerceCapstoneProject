@@ -1,9 +1,7 @@
-
-<p>Please enter whatever users you want:</p>
-
-<!-- GETTING THE PRODUCTS -->
-<button type="submit" (click)="loadUsers()">Get Users</button><br>
+<app-nav></app-nav><br><br>
+<button type="submit"  mat-stroked-button (click)="loadUsers()">Get Users</button><br>
 <br>
+<h1 style="text-align: center;">Add Users</h1>
 <mat-form-field>
     <mat-label>Enter Id</mat-label>
     <input matInput type="text" name="id" [(ngModel)]="id">
@@ -19,16 +17,18 @@
 <mat-form-field>
     <mat-label>Enter Email</mat-label>
     <input matInput type="text" name="email" [(ngModel)]="email">
-</mat-form-field>
+</mat-form-field><br><br>
 <mat-form-field>
     <mat-label>Enter Address</mat-label>
     <input matInput type="text" name="address" [(ngModel)]="address">
 </mat-form-field>
 <mat-form-field>
-    <mat-label>Enter Role</mat-label>
-    <input matInput type="text" name="role" [(ngModel)]="role">
-</mat-form-field>
-<button type="submit" (click)="saveUser()">Add</button><br>
+  <mat-label>Role</mat-label>
+  <mat-select (selectionChange)="onRoleChange($event)">
+    <mat-option *ngFor="let option of options" [value]="option">{{ option }}</mat-option>
+  </mat-select>
+</mat-form-field><br><br>
+<button  mat-stroked-buttontype="submit" (click)="saveUser()">Add</button><br>
 
 
 <!-- SORTING THE USERS -->
@@ -41,7 +41,7 @@
   <option>Ascending</option>
   <option>Descending</option>
 </select>
-<button [disabled]="!column_to_sort || !asc_desc" (click)="sortBy(column_to_sort, asc_desc)">Sort</button>
+<button  mat-stroked-button [disabled]="!column_to_sort || !asc_desc" (click)="sortBy(column_to_sort, asc_desc)">Sort</button>
 <ng-container *ngIf="user as data">
     <table>
       <tr>
@@ -60,6 +60,7 @@
           <td>{{u.email}}</td>
           <td>{{u.address}}</td>
           <td>{{u.role}}</td>
+          <td><button  mat-stroked-button (click)="removeUser(u.id)">Delete</button></td>
         </tr>
       </tbody>
     </table>
@@ -69,7 +70,7 @@
 
 <!-- SEARCH FUNCTIONALITY -->
 <input type="text" name="search" [(ngModel)]="searchText" placeholder="Search by name">
-<button (click)="searchUser()">Search</button><br>
+<button  mat-stroked-button (click)="searchUser()">Search</button><br>
 <ng-container *ngIf="searchBool">
   <table>
     <tr>
@@ -96,27 +97,6 @@
 
 
 <!-- FILTERING BY CATEGORY -->
-<label for="category">Choose Category To Filter</label>
-<select id="category" [(ngModel)]="new_category">
-  <option *ngFor="let category of cat_set">{{ category }}</option>
-</select>
-<button (click)="filterBy(new_category)">Filter</button><br>
-<ng-container *ngIf="filter_boolean">
-  <table>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Price</th>
-    </tr>
-    <tbody>
-      <tr *ngFor="let u of cat_array">
-        <td>{{u.id}}</td>
-        <td>{{u.name}}</td>
-        <td>{{u.price}}</td>
-      </tr>
-    </tbody>
-  </table>
-</ng-container>
-<br>
+
 
 

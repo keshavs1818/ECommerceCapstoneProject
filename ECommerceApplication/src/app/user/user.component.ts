@@ -120,4 +120,7 @@ export class UserComponent implements OnInit{
   {
     this.counts[index]++;
   }
+ reset(){
+  this.searchBool=!this.searchBool
+ }
 }

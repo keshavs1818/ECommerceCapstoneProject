@@ -2,15 +2,16 @@ import { Component } from '@angular/core';
 import { HomeService } from '../home.service';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { CreateuserService } from '../createuser.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
-  providers:[HomeService, HttpClient]
+  selector: 'app-createuser',
+  templateUrl: './createuser.component.html',
+  styleUrl: './createuser.component.css',
+  providers:[CreateuserService, HttpClient]
 })
-export class HomeComponent {
-  constructor(private homeService:HomeService ,private http:HttpClient){}
+export class CreateuserComponent {
+  constructor(private createuserService:CreateuserService ,private http:HttpClient){}
   // Columns For Product Details
   id:any;
   username:any;
@@ -25,7 +26,7 @@ export class HomeComponent {
   // Column To Sort
   column_to_sort:any;
 
-  
+  options: string[] = ['ROLE_USER', 'ROLE_ADMIN'];
   user:any;
   new_category:string;
   data = "productdetails";
@@ -42,7 +43,6 @@ export class HomeComponent {
   count = 0;
   asc_desc:any;
   message:any;
-
   cart_array = [];
   wish_array = [];
   disabled_cart = [];
@@ -51,7 +51,7 @@ export class HomeComponent {
   searchArray:any;
   searchBool:boolean;
   sortBool = true;
-  
+  selectedRole:any;
   counts: number[] = [];
 
   maphash = {
@@ -102,24 +102,25 @@ export class HomeComponent {
   }
   saveUser () 
   {
-    this.payLoadUser = {'id': this.id, 'username': this.username, 'password': this.password, 'email': this.email, 'address': this.address, 'role': this.role};
-    this.homeService.createUser(this.payLoadUser).subscribe(data=>console.log(data));
+    this.payLoadUser = {'id': this.id, 'username': this.username, 'password': this.password, 'email': this.email, 'address': this.address, 'role': this.selectedRole};
+    this.createuserService.createUser(this.payLoadUser).subscribe(data=>console.log(data));
     console.log("User updated");
   }
-  removeUser() 
+  removeUser(id:number) 
   {
-    this.homeService.deleteUser(this.id).subscribe(data=>console.log(data));
-    console.log("User deleted");
+    this.createuserService.deleteUser(id).subscribe(data=>console.log(data));
+    window.location.reload();
+   alert("User deleted");
   }
   searchUser () 
   {
     this.searchBool = true;
-    this.homeService.searchUser(this.searchText).subscribe(data=>{console.log(data); this.searchArray = data; });
+    this.createuserService.searchUser(this.searchText).subscribe(data=>{console.log(data); this.searchArray = data; });
     console.log("User found");
   }
   loadUsers()
   {
-    this.homeService.getUsers().subscribe({
+    this.createuserService.getUsers().subscribe({
       next: (data) => {
         if (Array.isArray(data)) {
           this.user = data;
@@ -132,29 +133,16 @@ export class HomeComponent {
       },
     })
   }
-  decCount(index:number)
-  {
-    if(this.counts[index]>0){
-    this.counts[index]--;
-    }
-  }
-  incCount(index:number)
-  {
-    this.counts[index]++;
-  }
+  
   filterBy(category:string) {
     this.cat_array = this.temp_array.filter(item => item.category === category);
     this.filter_boolean = true;
   }
-  onFileSelected(event){
-    const file:File= event.target.files[0];
-    if(file){
-      this.fileName=file.name;
-      const formData= new FormData();
-      formData.append("file",file);
-      this.homeService.bulkUpload(formData).subscribe();
-      console.log("users sent")
-    }
+
+  onRoleChange(event: any): void {
+    this.selectedRole = event.value;
+    console.log('Selected Role:', this.selectedRole);
   }
+
 }
 

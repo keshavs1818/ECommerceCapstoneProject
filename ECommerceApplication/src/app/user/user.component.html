@@ -1,4 +1,10 @@
 <app-usernav></app-usernav>
+<div style="display: flex; justify-content: center; margin-top: 20px;">
+    <input type="text" name="search" [(ngModel)]="searchText" placeholder="Search by name">
+  <button  mat-stroked-button (click)="searchProducts()">Search</button>
+  <button  mat-stroked-button (click)="reset()">Reset</button>
+  <br>
+  </div>
 <div class="container">
 <label for="sort">Sort By</label>
 <select id="sort" [(ngModel)]="column_to_sort">
@@ -44,7 +50,7 @@
 </ng-container>
 <br>
 -->
-<div class="flexbox">
+<div class="flexbox" *ngIf="!searchBool">
     <mat-card *ngFor="let item of user; let i = index" >
         <mat-card-header>
             
@@ -70,3 +76,30 @@
     </mat-card-actions>
     </mat-card>
     </div>
+
+    <div class="flexbox" *ngIf="searchBool">
+        <mat-card *ngFor="let item of searchArray; let i = index" >
+            <mat-card-header>
+                
+                <mat-card-title>Product Name:{{item.name}}</mat-card-title>
+                <mat-card-subtitle >Product Id: {{item.id}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="{{item.imageUrl}}" alt="{{item.name}}">
+            <mat-content>
+            <section>
+                <p>Price: ${{item.price}}</p>
+                <p class="cat">Category: {{item.category}}</p>
+            </section>
+            <button type="submit" (click)="decCount(i)">-</button>
+            {{counts[i]}}
+            <button type="submit" (click)="incCount(i)">+</button><br><br>
+        </mat-content>
+        <mat-card-actions>
+           
+            {{checkCart(i)}}
+            {{checkWish(i)}}
+            <button class="matBtn" [disabled]="disabled_cart[i]" (click)="updateAdd(item.id, item.name, item.price, item.category, counts[i],item.stockId, item.saleId)"><b>Add To Cart</b></button>
+            <button [disabled]="disabled_wish[i]" (click)="updateWish(item.id, item.name, item.price, item.category)"><b>Add To Wishlist</b></button>
+        </mat-card-actions>
+        </mat-card>
+        </div>

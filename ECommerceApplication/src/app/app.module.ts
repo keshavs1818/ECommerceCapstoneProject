@@ -23,14 +23,17 @@ import { UserComponent } from './user/user.component';
 import { UsernavComponent } from './usernav/usernav.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
+import { CreateuserComponent } from './createuser/createuser.component';
+import {MatSelectModule} from '@angular/material/select';
+
 @NgModule({
   declarations: [
-    AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent, NavComponent,CartComponent, WishlistComponent, UserComponent, UsernavComponent, 
+    AppComponent,HomeComponent, RegisterComponent,StocksComponent, SalesComponent, NavComponent,CartComponent, WishlistComponent, UserComponent, UsernavComponent, CreateuserComponent 
 
   ],
   imports: [
     BrowserModule,BrowserAnimationsModule,HttpClientModule,AppRoutingModule, FormsModule, MatIconModule,MatMenuModule,MatCardModule,MatFormFieldModule,MatInputModule,
-    MatButtonModule,MatDialogModule
+    MatButtonModule,MatDialogModule,MatSelectModule
   ],
   providers: [StocksService],
   bootstrap: [AppComponent]
