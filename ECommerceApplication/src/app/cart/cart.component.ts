@@ -13,6 +13,7 @@ export class CartComponent implements OnInit {
   storedCart:any;
   productStock:any;
   payloadSales:any;
+  sum:number;
   ngOnInit(): void {
     this.storedCart = JSON.parse(localStorage.getItem("cart"));
   }
@@ -46,4 +47,21 @@ export class CartComponent implements OnInit {
     localStorage.removeItem("cart");
     window.location.reload();
   }
-}
+  updateSum(number:number) {
+    this.sum += number;
+  }
+
+  resetSum() {
+    this.sum = 0;
+  }
+
+  removeUser(cart_obj:object, value:number) 
+  {
+    const index = this.storedCart.indexOf(cart_obj);
+    if (index > -1) {
+      this.storedCart.splice(index, 1);
+    }
+    this.sum -= value;
+    localStorage.setItem("cart", JSON.stringify(this.storedCart));
+}}
+

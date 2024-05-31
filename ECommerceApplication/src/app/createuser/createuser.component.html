@@ -1,0 +1,102 @@
+<app-nav></app-nav><br><br>
+<button type="submit"  mat-stroked-button (click)="loadUsers()">Get Users</button><br>
+<br>
+<h1 style="text-align: center;">Add Users</h1>
+<mat-form-field>
+    <mat-label>Enter Id</mat-label>
+    <input matInput type="text" name="id" [(ngModel)]="id">
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Enter Username</mat-label>
+    <input matInput type="text" name="username" [(ngModel)]="username">
+</mat-form-field><br><br>
+<mat-form-field>
+    <mat-label>Enter Password</mat-label>
+    <input matInput type="text" name="password" [(ngModel)]="password">
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Enter Email</mat-label>
+    <input matInput type="text" name="email" [(ngModel)]="email">
+</mat-form-field><br><br>
+<mat-form-field>
+    <mat-label>Enter Address</mat-label>
+    <input matInput type="text" name="address" [(ngModel)]="address">
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Role</mat-label>
+  <mat-select (selectionChange)="onRoleChange($event)">
+    <mat-option *ngFor="let option of options" [value]="option">{{ option }}</mat-option>
+  </mat-select>
+</mat-form-field><br><br>
+<button  mat-stroked-buttontype="submit" (click)="saveUser()">Add</button><br>
+
+
+<!-- SORTING THE USERS -->
+<label for="sort">Sort By</label>
+<select id="sort" [(ngModel)]="column_to_sort">
+  <option *ngFor="let entry of maphash | keyvalue">{{ entry.key }}</option>
+</select>
+<label for="asc_desc">Ascending or Descending</label>
+<select id="asc_desc" [(ngModel)]="asc_desc">
+  <option>Ascending</option>
+  <option>Descending</option>
+</select>
+<button  mat-stroked-button [disabled]="!column_to_sort || !asc_desc" (click)="sortBy(column_to_sort, asc_desc)">Sort</button>
+<ng-container *ngIf="user as data">
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Role</th>
+      </tr>
+      <tbody>
+        <tr *ngFor="let u of data; let i = index">
+          <td>{{u.id}}</td>
+          <td>{{u.username}}</td>
+          <td>{{u.password}}</td>
+          <td>{{u.email}}</td>
+          <td>{{u.address}}</td>
+          <td>{{u.role}}</td>
+          <td><button  mat-stroked-button (click)="removeUser(u.id)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+</ng-container>
+<br>
+
+
+<!-- SEARCH FUNCTIONALITY -->
+<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search by name">
+<button  mat-stroked-button (click)="searchUser()">Search</button><br>
+<ng-container *ngIf="searchBool">
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Username</th>
+      <th>Password</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Role</th>
+    </tr>
+    <tbody>
+      <tr *ngFor="let u of searchArray">
+        <td>{{u.id}}</td>
+        <td>{{u.name}}</td>
+        <td>{{u.password}}</td>
+        <td>{{u.email}}</td>
+        <td>{{u.address}}</td>
+        <td>{{u.role}}</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+<br>
+
+
+<!-- FILTERING BY CATEGORY -->
+
+
+

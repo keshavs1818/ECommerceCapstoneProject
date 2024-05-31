@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { StocksComponent } from './stocks/stocks.component';
-import { SalesComponent } from './sales/sales.component';
 import { LoginComponent } from './login/login.component';
 
 // guards against non authorized route usage
@@ -12,7 +10,10 @@ import { userGuard } from './auth/user.guard';
 
 import { CartComponent } from './cart/cart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { SalesComponent } from './sales/sales.component';
+import { StocksComponent } from './stocks/stocks.component';
 import { UserComponent } from './user/user.component';
+import { CreateuserComponent } from './createuser/createuser.component';
 
 const routes: Routes = [
   // if you want the route to be accessible only by certain authorities,
@@ -26,8 +27,9 @@ const routes: Routes = [
 
   {path:'cart', component:CartComponent},
   {path: 'wishlist', component: WishlistComponent},
-  {path: 'user',component:UserComponent}
-
+  {path:'users',component:UserComponent},
+  {path:'createuser',component:CreateuserComponent}
+ 
 ];
 
 @NgModule({
