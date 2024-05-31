@@ -35,7 +35,7 @@ export class CartComponent implements OnInit {
      
     );
     localStorage.removeItem("cart");
-    window.location.reload();
+    // window.location.reload();
   }
   processPurchases(purchases:any,): void {
     purchases.forEach(purchase => {
@@ -45,7 +45,6 @@ export class CartComponent implements OnInit {
 }
   clearCart(){
     localStorage.removeItem("cart");
-    window.location.reload();
   }
   updateSum(number:number) {
     this.sum += number;
