@@ -35,7 +35,6 @@ export class CartComponent implements OnInit {
      
     );
     localStorage.removeItem("cart");
-    // window.location.reload();
   }
   processPurchases(purchases:any,): void {
     purchases.forEach(purchase => {
