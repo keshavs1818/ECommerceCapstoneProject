@@ -9,7 +9,7 @@ export class HomeService {
   constructor(private http:HttpClient) { } // Inject HTTPClient using DI
   /* This URL for REST API call to Spring Boot REST API application*/
   private urlDelete = 'http://localhost:8080/products/';
-  private urlPut='http://localhost:8080/users/';
+  private urlPut='http://localhost:8080/products/';
   private urlPost = 'http://localhost:8080/product';
   private urlGet = 'http://localhost:8080/products';
   private bulkUrlPost= 'http://localhost:8080/product/csv';
