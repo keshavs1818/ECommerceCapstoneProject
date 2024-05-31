@@ -94,9 +94,9 @@
 <ng-container *ngIf="!editBool">
   <button  mat-stroked-button class="addProdBtn" type="submit" (click)="saveUser()" [disabled]="!myForm.valid">Add</button><br>
   </ng-container>
-  <ng-container *ngIf="editBool">
+<ng-container *ngIf="editBool">
     <button  mat-stroked-button class="addProdBtn" type="submit" (click)="updateProd()" [disabled]="!myForm.valid">edit</button><br>
-    </ng-container>
+</ng-container>
 </form>
 
 

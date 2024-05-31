@@ -26,6 +26,7 @@ export class HomeService {
   {
     return this.http.post(this.urlCreateUser, user);
   }
+
   updateUser(user:any,id:number)
   {
     return this.http.put(this.urlPut+id, user, {headers: this.authHeaders});
