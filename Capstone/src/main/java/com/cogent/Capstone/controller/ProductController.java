@@ -40,7 +40,7 @@ public class ProductController {
 	ProductService productService;
 	
 	@PostMapping(value = "/product")
-	public ResponseEntity<Product> createUser(@Valid @RequestBody Product product)//JsoN,Xml or other formats are converted as Model.
+	public ResponseEntity<Product> createUser(@RequestBody Product product)//JsoN,Xml or other formats are converted as Model.
 	{
     	Product product1=productService.saveProduct(product);
     	//http://localhost:8080/user/1

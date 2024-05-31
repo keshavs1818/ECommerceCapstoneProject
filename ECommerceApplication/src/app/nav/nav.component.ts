@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
 export class NavComponent {
   constructor(private auth: AuthService, private router: Router) {}
 
-  isLoggedIn () {
-    if (this.auth.getRole() == null) {
-      return false;
-    } return true;
-  }
+  // isLoggedIn () {
+  //   if (this.auth.getRole() == null) {
+  //     return false;
+  //   } return true;
+  // }
   logoutAction() {
     // remove roles and auth
     this.auth.setAuthHeaders(null);

@@ -1,12 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AuthService } from './auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CreateuserService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private auth: AuthService) { }
   private urlDelete = 'http://localhost:8080/users/';
 
   private urlPut='http://localhost:8080/users/';
@@ -17,11 +18,13 @@ export class CreateuserService {
 
   private urlGetID = 'http://localhost:8080/users/';
 
+  private authHeaders:HttpHeaders = this.auth.getAuthHeaders();
+
   createUser(user:any)
 
   {
 
-    return this.http.post(this.urlPost, user);
+    return this.http.post(this.urlPost, user, {headers: this.authHeaders});
 
   }
 
@@ -29,7 +32,7 @@ export class CreateuserService {
 
   {
 
-    return this.http.put(this.urlPut+id,user);
+    return this.http.put(this.urlPut+id,user,{headers: this.authHeaders});
 
   }
 
@@ -37,7 +40,7 @@ export class CreateuserService {
 
   {
 
-    return this.http.delete(this.urlDelete+id);
+    return this.http.delete(this.urlDelete+id, {headers: this.authHeaders});
 
   }
 
@@ -45,7 +48,7 @@ export class CreateuserService {
 
   {
 
-    return this.http.get(this.urlGetID+id);
+    return this.http.get(this.urlGetID+id, {headers: this.authHeaders});
 
   }
 
@@ -53,7 +56,7 @@ export class CreateuserService {
 
   {
 
-    return this.http.get(this.urlGet);
+    return this.http.get(this.urlGet, {headers: this.authHeaders});
 
   }
 }
