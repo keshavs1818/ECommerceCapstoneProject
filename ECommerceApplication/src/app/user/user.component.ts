@@ -12,7 +12,7 @@ export class UserComponent implements OnInit{
   
   constructor(private homeService:HomeService , private http:HttpClient){}
   ngOnInit(): void {
-    this.loadUsers();
+    this.loadProducts();
   }
   disabled_cart: any;
   disabled_wish: any;
@@ -85,15 +85,15 @@ export class UserComponent implements OnInit{
   add(category:any) {
     this.cat_set.add(category);
   }
-  searchUser () 
+  searchProducts () 
   {
     this.searchBool = true;
-    this.homeService.searchUser(this.searchText).subscribe(data=>{console.log(data); if(Array.isArray(data)) {this.searchArray = data}});
+    this.homeService.searchProducts(this.searchText).subscribe(data=>{console.log(data); if(Array.isArray(data)) {this.searchArray = data}});
     console.log("User found");
   }
-  loadUsers()
+  loadProducts()
   {
-    this.homeService.getUsers().subscribe({
+    this.homeService.getProducts().subscribe({
       next: (data) => {
         if (Array.isArray(data)) {
           this.user = data;

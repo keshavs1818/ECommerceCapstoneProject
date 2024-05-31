@@ -12,4 +12,9 @@ export class WishlistComponent implements OnInit {
   ngOnInit(): void {
     this.storedWish = JSON.parse(localStorage.getItem("wish"));
   }
+
+  clearCart(){
+    localStorage.removeItem("wishlist");
+    window.location.reload();
+  }
 }

@@ -15,23 +15,23 @@ export class HomeService {
   private bulkUrlPost= 'http://localhost:8080/product/csv';
   private imgUrlPost= 'http://localhost:8080/product/img';
   private urlSearch = 'http://localhost:8080/products/name/';
-  createUser(user:any)
+  createProduct(user:any)
   {
     return this.http.post(this.urlPost, user);
   }
-  updateUser(user:any,id:number)
+  updateProduct(user:any,id:number)
   {
     return this.http.put(this.urlPut+id,user);
   }
-  deleteUser(id:number)
+  deleteProduct(id:number)
   {
     return this.http.delete(this.urlDelete+id);
   }
-  searchUser(name:any)
+  searchProducts(name:any)
   {
     return this.http.get(this.urlSearch+name);
   }
-  getUsers()
+  getProducts()
   {
     return this.http.get(this.urlGet);
   }

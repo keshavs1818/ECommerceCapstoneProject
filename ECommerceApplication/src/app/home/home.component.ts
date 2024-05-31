@@ -111,12 +111,12 @@ export class HomeComponent {
   add(category:string) {
     this.cat_set.add(category);
   }
-  saveUser () 
+  saveProduct () 
   {
     this.payLoadUser = {'id': this.id, 'name': this.name, 'price': this.price, 'category':this.category, 'imageUrl':this.imageUrl,"stockId":this.stockId,"saleId":this.saleId };
     this.payloadSales={"saleId":this.saleId, "quantities":[], "dates":[]};
     this.payloadStocks={"stockId":this.stockId,"stockAvailable":15};
-    this.homeService.createUser(this.payLoadUser).subscribe(data=>console.log(data));
+    this.homeService.createProduct(this.payLoadUser).subscribe(data=>console.log(data));
     this.stockService.createStock(this.payloadStocks).subscribe();
     this.saleService.createSales(this.payloadSales).subscribe();
     alert("Product Created")
@@ -124,18 +124,18 @@ export class HomeComponent {
   }
   removeProduct(id:number) 
   {
-    this.homeService.deleteUser(id).subscribe(data=>console.log(data));
+    this.homeService.deleteProduct(id).subscribe(data=>console.log(data));
     console.log("User deleted");
   }
-  searchUser () 
+  searchProducts () 
   {
     this.searchBool = true;
-    this.homeService.searchUser(this.searchText).subscribe(data=>{console.log(data); if(Array.isArray(data)) {this.searchArray = data}});
+    this.homeService.searchProducts(this.searchText).subscribe(data=>{console.log(data); if(Array.isArray(data)) {this.searchArray = data}});
     console.log("User found");
   }
-  loadUsers()
+  loadProducts()
   {
-    this.homeService.getUsers().subscribe({
+    this.homeService.getProducts().subscribe({
       next: (data) => {
         if (Array.isArray(data)) {
           this.user = data;
@@ -233,7 +233,7 @@ export class HomeComponent {
       }
   updateProd(){
     this.editPayloadProd = {'id': this.editid, 'name': this.editName, 'price': this.editPrice, 'category':this.editcategory, 'imageUrl':this.editImgUrl,"stockId":this.editStockId,"saleId":this.editSaleId };
-    this.homeService.updateUser(this.editPayloadProd,this.editid).subscribe(data=>console.log(data));
+    this.homeService.updateProduct(this.editPayloadProd,this.editid).subscribe(data=>console.log(data));
     console.log("product updated")
   }
 }
