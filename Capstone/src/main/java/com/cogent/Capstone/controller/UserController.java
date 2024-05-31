@@ -31,7 +31,6 @@ import com.cogent.Capstone.service.UserService;
 import jakarta.validation.Valid;
 
 @RestController
-//@Controller
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 	@Autowired

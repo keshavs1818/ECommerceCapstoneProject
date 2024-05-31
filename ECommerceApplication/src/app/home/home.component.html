@@ -15,8 +15,9 @@
 
 </div>
 <form #myForm="ngForm">
-  <h1>Add Products</h1>
-  <div>
+  <h1 *ngIf="!editBool">Add Products</h1>
+  <h1 *ngIf="editBool">Update Products</h1>
+  <div *ngIf="!editBool">
     <input type="file" class="file-input"
          (change)="onImgSelected($event)" #imgUpload>
   
@@ -31,35 +32,71 @@
       <mat-hint ><strong>Please upload image first to get imageUrl</strong> </mat-hint>
   </div>
   </div><br><br>
-<mat-form-field >
+<mat-form-field *ngIf="!editBool"  >
   <mat-label>Enter Id</mat-label>
-  <input matInput  type="text" name="id" [(ngModel)]="id" ngModel required>
+  <input  matInput  type="text" name="id" [(ngModel)]="id" ngModel required>
 </mat-form-field>
-<mat-form-field>
+<mat-form-field *ngIf="editBool"  >
+  <mat-label>Enter Id</mat-label>
+  <input  matInput  type="text" name="id" [(ngModel)]="editid" [value]="editid" ngModel required >
+</mat-form-field>
+
+<mat-form-field *ngIf="!editBool">
   <mat-label>Enter Name</mat-label>
   <input matInput  type="text" name="name" [(ngModel)]="name" ngModel required>
 </mat-form-field><br><br>
-<mat-form-field>
+
+<mat-form-field *ngIf="editBool">
+  <mat-label>Enter Name</mat-label>
+  <input matInput  type="text" name="name" [(ngModel)]="editName" ngModel required>
+</mat-form-field><br><br>
+
+<mat-form-field *ngIf="!editBool">
   <mat-label>Enter Price</mat-label>
   <input matInput  type="text"name="price" [(ngModel)]="price" ngModel required>
 </mat-form-field>
-<mat-form-field>
+<mat-form-field *ngIf="editBool">
+  <mat-label>Enter Price</mat-label>
+  <input matInput  type="text"name="price" [(ngModel)]="editPrice" ngModel required>
+</mat-form-field>
+<mat-form-field *ngIf="!editBool">
   <mat-label>Enter Category</mat-label>
   <input matInput  type="text"name="category" [(ngModel)]="category" ngModel required>
 </mat-form-field><br><br>
-<mat-form-field class="imgUrl">
+<mat-form-field *ngIf="editBool">
+  <mat-label>Enter Category</mat-label>
+  <input matInput  type="text"name="category" [(ngModel)]="editcategory" ngModel required>
+</mat-form-field><br><br>
+<mat-form-field class="imgUrl" *ngIf="!editBool">
 <mat-label>Enter ImageUrl</mat-label>
 <input matInput  type="text" name="imageUrl" [(ngModel)]="imageUrl" ngModel required>
 </mat-form-field><br><br>
-<mat-form-field>
+<mat-form-field class="imgUrl" *ngIf="editBool">
+  <mat-label>Enter ImageUrl</mat-label>
+  <input matInput  type="text" name="imageUrl" [(ngModel)]="editImgUrl" ngModel required>
+  </mat-form-field><br><br>
+<mat-form-field *ngIf="!editBool">
 <mat-label>Enter StockId</mat-label>
 <input matInput  type="text" name="stockId" [(ngModel)]="stockId" ngModel required>
 </mat-form-field>
-<mat-form-field>
+<mat-form-field *ngIf="editBool">
+  <mat-label>Enter StockId</mat-label>
+  <input matInput  type="text" name="stockId" [(ngModel)]="editStockId" ngModel required>
+  </mat-form-field>
+<mat-form-field *ngIf="!editBool">
 <mat-label>Enter SaleId</mat-label>
 <input matInput  type="text" name="saleId" [(ngModel)]="saleId" ngModel required>
 </mat-form-field><br><br>
-<button mat-stroked-button class="addProdBtn" type="submit" (click)="saveUser()" [disabled]="!myForm.valid">Add</button><br>
+<mat-form-field *ngIf="editBool">
+  <mat-label>Enter SaleId</mat-label>
+  <input matInput  type="text" name="saleId" [(ngModel)]="editSaleId" ngModel required>
+  </mat-form-field><br><br>
+<ng-container *ngIf="!editBool">
+  <button  mat-stroked-button class="addProdBtn" type="submit" (click)="saveUser()" [disabled]="!myForm.valid">Add</button><br>
+  </ng-container>
+  <ng-container *ngIf="editBool">
+    <button  mat-stroked-button class="addProdBtn" type="submit" (click)="updateProd()" [disabled]="!myForm.valid">edit</button><br>
+    </ng-container>
 </form>
 
 
@@ -89,6 +126,7 @@
         <th>Price</th>
         <th>Category</th>
         <th>ImageUrl</th>
+        <th>Actions</th>
       </tr>
       </thead>
       <tbody>
@@ -98,7 +136,7 @@
           <td>{{u.price}}</td>
           <td>{{u.category}}</td>
           <td>{{u.imageUrl}}</td>
-          <td><button (click)="removeProduct(u.id)">Remove</button></td>
+          <td><button mat-stroked-button (click)="edit(u.id,u.stockId,u.saleId,u.price,u.name,u.category,u.imageUrl)" >Edit</button><button mat-stroked-button  (click)="removeProduct(u.id)">Remove</button></td>
           <!--<img *ngIf="u.imageUrl" [src]="u.imageUrl" alt="{{ u.name }}">-->
         </tr>
       </tbody>

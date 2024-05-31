@@ -14,6 +14,8 @@ import Papa from 'papaparse';
   providers:[HomeService,SalesService,StocksService, HttpClient]
 })
 export class HomeComponent {
+ 
+  
   constructor(private homeService:HomeService ,private saleService:SalesService,private stockService:StocksService, private http:HttpClient){}
   id:any;
   name:any;
@@ -23,10 +25,12 @@ export class HomeComponent {
   saleId:number;
   stockId:number;
   count:number=0;
-
+  editName: String;
+  editcategory: any;
+  editImgUrl: any;
   // Name to Search From
   searchText:any;
-
+  editPayloadProd:any;
   // Column To Sort
   column_to_sort:any;
 
@@ -58,7 +62,11 @@ export class HomeComponent {
   searchArray:any;
   searchBool:boolean;
   sortBool = true;
-  
+  editBool:boolean= false;
+  editid:number;
+  editStockId:number;
+  editSaleId:number;
+  editPrice: any;
   counts: number[] = [];
 
   maphash = {
@@ -213,6 +221,22 @@ export class HomeComponent {
       console.log("Image sent " + this.fileName)
       
     }
+  }
+
+  edit(id:number,stockId:number,saleId:number,price:any,name:String,category:any,imageUrl:any){
+      this.editBool=!this.editBool;
+      this.editid=id;
+      this.editStockId=stockId;
+      this.editSaleId=saleId;
+      this.editPrice=price;
+      this.editName=name;
+      this.editcategory=category;
+      this.editImgUrl=imageUrl;
+      }
+  updateProd(){
+    this.editPayloadProd = {'id': this.editid, 'name': this.editName, 'price': this.editPrice, 'category':this.editcategory, 'imageUrl':this.editImgUrl,"stockId":this.editStockId,"saleId":this.editSaleId };
+    this.homeService.updateUser(this.editPayloadProd,this.editid).subscribe(data=>console.log(data));
+    console.log("product updated")
   }
 }
 
