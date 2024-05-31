@@ -31,3 +31,21 @@ h1{
 td{
     text-align: center;
 }
+.cartbtns{
+    background-color:  #009879;
+    color:white;
+    width:15em;
+    height:3em;
+    margin-left: auto;
+    margin-right: auto;
+    
+
+    
+}
+.btncontainer{
+    display:flex;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+}

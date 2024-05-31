@@ -22,24 +22,30 @@ export class HomeService {
   private authHeaders:HttpHeaders = this.authService.getAuthHeaders();
 
   private urlSearch = 'http://localhost:8080/products/name/';
-  createUser(user:any)
-  {
+
+
+  createUser(user:any) {
     return this.http.post(this.urlCreateUser, user);
   }
 
-  updateUser(user:any,id:number)
+  createProduct(product:any)
   {
-    return this.http.put(this.urlPut+id, user, {headers: this.authHeaders});
+    return this.http.post(this.urlPost, product, {headers: this.authHeaders});
   }
-  deleteUser(id:number)
+
+  updateProduct(product:any,id:number)
+  {
+    return this.http.put(this.urlPut+id, product, {headers: this.authHeaders});
+  }
+  deleteProduct(id:number)
   {
     return this.http.delete(this.urlDelete+id, {headers: this.authHeaders});
   }
-  searchUser(name:any)
+  searchProducts(name:any)
   {
     return this.http.get(this.urlSearch+name);
   }
-  getUsers()
+  getProducts()
   {
     return this.http.get(this.urlGet, {headers: this.authHeaders});
   }

@@ -11,7 +11,7 @@
       </button>
       <span class="bulkspan" id="uplfilebtn">Bulk Upload</span>
     </div>
-<button mat-stroked-button class="btnfeatures" type="submit" (click)="loadUsers()">Get Products</button><br><br>
+<button mat-stroked-button class="btnfeatures" type="submit" (click)="loadProducts()">Get Products</button><br><br>
 
 </div>
 <form #myForm="ngForm">
@@ -92,7 +92,7 @@
   <input matInput  type="text" name="saleId" [(ngModel)]="editSaleId" ngModel required>
   </mat-form-field><br><br>
 <ng-container *ngIf="!editBool">
-  <button  mat-stroked-button class="addProdBtn" type="submit" (click)="saveUser()" [disabled]="!myForm.valid">Add</button><br>
+  <button  mat-stroked-button class="addProdBtn" type="submit" (click)="saveProduct()" [disabled]="!myForm.valid">Add</button><br>
   </ng-container>
 <ng-container *ngIf="editBool">
     <button  mat-stroked-button class="addProdBtn" type="submit" (click)="updateProd()" [disabled]="!myForm.valid">edit</button><br>
